@@ -1,66 +1,34 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import HomeContainer from '@/components/HomeContainer';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'TimeSwitchr | Minimalist Time Zone Converter',
+  description: 'Fast, minimalist time zone converter. Convert between CET, IST, ET, PT, and UTC with zero clicks. Modern UI, mobile-first, and SEO-friendly.',
+  keywords: 'time zone converter, timezone conversion, CET to IST, IST to ET, EST to CET, PT to ET, minimalist world clock',
+  openGraph: {
+    title: 'TimeSwitchr | Minimalist Time Zone Converter',
+    description: 'Instantly convert time between zones with the fastest, zero-click converter.',
+    url: 'https://timeswitchr.com',
+    siteName: 'TimeSwitchr',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'TimeSwitchr - Minimalist Time Zone Converter',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'TimeSwitchr | Minimalist Time Zone Converter',
+    description: 'The fastest way to convert time zones. Minimalist design, mobile-first, and zero clicks.',
+    images: ['/og-image.png'],
+  },
+};
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+  return <HomeContainer />;
 }

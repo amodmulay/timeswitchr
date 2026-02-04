@@ -1,0 +1,212 @@
+.timePicker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+.pickerWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    position: relative;
+}
+
+.columnContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.scrollBtn {
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.25rem;
+    color: var(--muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.scrollBtn:hover {
+    background: var(--muted-background);
+    color: var(--foreground);
+    border-color: var(--muted);
+}
+
+.scrollBtn:active {
+    transform: scale(0.95);
+}
+
+.column {
+    position: relative;
+    height: 120px;
+    width: 80px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    mask-image: linear-gradient(to bottom, transparent, black 40%, black 60%, transparent);
+}
+
+.scrollArea {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: grab;
+}
+
+.scrollArea:active {
+    cursor: grabbing;
+}
+
+.digit {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--muted);
+    transition: color 0.2s ease, transform 0.2s ease;
+    user-select: none;
+}
+
+.digitActive {
+    color: var(--foreground);
+    transform: scale(1.1);
+}
+
+.separator {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--muted);
+    line-height: 1.2;
+}
+
+/* Hidden input for typing */
+.hiddenInput {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.selectionIndicator {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 60px;
+    transform: translateY(-50%);
+    background: var(--muted-background);
+    border-radius: var(--radius);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.typeWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    height: 120px;
+    justify-content: center;
+}
+
+.timeInputBox {
+    font-size: 3rem;
+    font-weight: 700;
+    border: 1px solid var(--border);
+    background: var(--muted-background);
+    color: var(--foreground);
+    border-radius: var(--radius);
+    padding: 0.5rem 1rem;
+    width: 220px;
+    text-align: center;
+}
+
+.doneButton {
+    background: var(--accent);
+    color: var(--accent-foreground);
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.typeToggle {
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 0.7rem;
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.hideTimeIcon::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+.hideTimeIcon {
+    appearance: none;
+    -moz-appearance: textfield;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.hideTimeIcon::-webkit-outer-spin-button,
+.hideTimeIcon::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.toggleContainer {
+    display: flex;
+    background: var(--muted-background);
+    padding: 0.25rem;
+    border-radius: 20px;
+    gap: 0.25rem;
+    align-items: center;
+}
+
+.toggleButton {
+    padding: 0.35rem 1rem;
+    border-radius: 16px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--muted);
+    transition: all 0.2s ease;
+}
+
+.toggleButtonActive {
+    background: var(--background);
+    color: var(--foreground);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 480px) {
+    .column {
+        width: 60px;
+        height: 100px;
+    }
+
+    .digit {
+        height: 50px;
+        font-size: 2.5rem;
+    }
+
+    .selectionIndicator {
+        height: 50px;
+    }
+}

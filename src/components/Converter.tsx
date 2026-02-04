@@ -1,0 +1,124 @@
+'use client';
+
+import { COMMON_TIMEZONES, convertTime } from '@/lib/time';
+import styles from './Converter.module.css';
+import * as analytics from '@/lib/analytics';
+import TimePicker from './TimePicker';
+import TimeZoneSelector from './TimeZoneSelector';
+
+interface ConverterProps {
+    time: string;
+    setTime: (t: string) => void;
+    fromZone: string;
+    setFromZone: (z: string) => void;
+    toZone: string;
+    setToZone: (z: string) => void;
+    is24h: boolean;
+    onToggle24h: (val: boolean) => void;
+}
+
+export default function Converter({
+    time,
+    setTime,
+    fromZone,
+    setFromZone,
+    toZone,
+    setToZone,
+    is24h,
+    onToggle24h,
+}: ConverterProps) {
+    const result = convertTime(time, fromZone, toZone);
+
+    const handleSwap = () => {
+        const temp = fromZone;
+        setFromZone(toZone);
+        setToZone(temp);
+        analytics.event({
+            action: 'swap_zones',
+            category: 'converter',
+            label: `${fromZone}_to_${toZone}`
+        });
+    };
+
+    const handleTimeChange = (t: string) => {
+        setTime(t);
+        // Track full time changes
+        if (t.length === 5) {
+            analytics.event({
+                action: 'time_change',
+                category: 'converter',
+                label: t
+            });
+        }
+    };
+
+    const handleFromChange = (z: string) => {
+        setFromZone(z);
+        analytics.event({
+            action: 'from_zone_change',
+            category: 'converter',
+            label: z
+        });
+    };
+
+    const handleToChange = (z: string) => {
+        setToZone(z);
+        analytics.event({
+            action: 'to_zone_change',
+            category: 'converter',
+            label: z
+        });
+    };
+
+    return (
+        <div className={styles.converter}>
+            <div className={styles.inputGroup}>
+                <label className={styles.label}>Select Time</label>
+                <TimePicker
+                    value={time}
+                    onChange={handleTimeChange}
+                    is24h={is24h}
+                    onToggle24h={onToggle24h}
+                />
+            </div>
+
+            <div className={styles.inputGroup}>
+                <label className={styles.label}>From</label>
+                <TimeZoneSelector
+                    value={fromZone}
+                    onChange={handleFromChange}
+                    label="From Time Zone"
+                />
+            </div>
+
+            <button className={styles.swapButton} onClick={handleSwap} aria-label="Swap Time Zones">
+                <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                >
+                    <path d="M7 10l5-5 5 5M7 14l5 5 5-5" />
+                </svg>
+            </button>
+
+            <div className={styles.inputGroup}>
+                <label className={styles.label}>To</label>
+                <TimeZoneSelector
+                    value={toZone}
+                    onChange={handleToChange}
+                    label="To Time Zone"
+                />
+            </div>
+
+            <div className={styles.resultSection}>
+                <span className={styles.resultTime}>{result.convertedTime}</span>
+                <span className={styles.resultDay}>{result.dayLabel}</span>
+            </div>
+        </div>
+    );
+}
