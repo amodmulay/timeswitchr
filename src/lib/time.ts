@@ -23,6 +23,13 @@ export const COMMON_TIMEZONES: TimeZone[] = [
     { id: 'Asia/Singapore', label: 'SGT', name: 'Singapore Time' },
 ];
 
+export const WORLD_CLOCK_ZONES = [
+    'Europe/Berlin',
+    'Asia/Kolkata',
+    'America/New_York',
+    'America/Los_Angeles'
+];
+
 // Heuristic to check if two zone IDs represent the same time rules
 export const isSameZone = (id1: string, id2: string) => {
     if (!id1 || !id2) return false;

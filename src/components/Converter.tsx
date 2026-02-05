@@ -2,7 +2,7 @@
 
 import { COMMON_TIMEZONES, convertTime } from '@/lib/time';
 import styles from './Converter.module.css';
-import * as analytics from '@/lib/analytics';
+import { trackEvent } from '@/lib/analytics';
 import TimePicker from './TimePicker';
 import TimeZoneSelector from './TimeZoneSelector';
 
@@ -33,7 +33,7 @@ export default function Converter({
         const temp = fromZone;
         setFromZone(toZone);
         setToZone(temp);
-        analytics.event({
+        trackEvent({
             action: 'swap_zones',
             category: 'converter',
             label: `${fromZone}_to_${toZone}`
@@ -44,7 +44,7 @@ export default function Converter({
         setTime(t);
         // Track full time changes
         if (t.length === 5) {
-            analytics.event({
+            trackEvent({
                 action: 'time_change',
                 category: 'converter',
                 label: t
@@ -54,7 +54,7 @@ export default function Converter({
 
     const handleFromChange = (z: string) => {
         setFromZone(z);
-        analytics.event({
+        trackEvent({
             action: 'from_zone_change',
             category: 'converter',
             label: z
@@ -63,7 +63,7 @@ export default function Converter({
 
     const handleToChange = (z: string) => {
         setToZone(z);
-        analytics.event({
+        trackEvent({
             action: 'to_zone_change',
             category: 'converter',
             label: z

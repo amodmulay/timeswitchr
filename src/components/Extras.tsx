@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { DateTime } from 'luxon';
-import { COMMON_TIMEZONES } from '@/lib/time';
+import { COMMON_TIMEZONES, WORLD_CLOCK_ZONES } from '@/lib/time';
 import styles from './Extras.module.css';
-import * as analytics from '@/lib/analytics';
+import { trackEvent } from '@/lib/analytics';
 
 interface Preset {
     from: string;
@@ -23,7 +23,7 @@ const PRESETS: Preset[] = [
 export function Presets({ onSelect }: { onSelect: (from: string, to: string) => void }) {
     const handleSelect = (from: string, to: string, label: string) => {
         onSelect(from, to);
-        analytics.event({
+        trackEvent({
             action: 'preset_click',
             category: 'presets',
             label: label
@@ -52,9 +52,8 @@ export function WorldClock() {
         const update = () => {
             const now = DateTime.now();
             const newTimes: Record<string, { time: string, date: string }> = {};
-            const zones = ['Europe/Berlin', 'Asia/Kolkata', 'America/New_York', 'America/Los_Angeles'];
 
-            zones.forEach(z => {
+            WORLD_CLOCK_ZONES.forEach(z => {
                 const tz = COMMON_TIMEZONES.find(t => t.id === z);
                 if (tz) {
                     const zTime = now.setZone(z);

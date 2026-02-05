@@ -11,12 +11,20 @@ interface WheelProps {
     label: string;
 }
 
+import { useHoldToRepeat } from '@/hooks/useHoldToRepeat';
+
+interface WheelProps {
+    range: number[];
+    value: number;
+    onChange: (val: number) => void;
+    onEnterTypeMode: () => void;
+    label: string;
+}
+
 function Wheel({ range, value, onChange, onEnterTypeMode, label }: WheelProps) {
     const [isDragging, setIsDragging] = useState(false);
     const [startY, setStartY] = useState(0);
     const [scrollOffset, setScrollOffset] = useState(0);
-    const holdTimerRef = useRef<NodeJS.Timeout | null>(null);
-    const holdIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
     const itemHeight = 60;
 
@@ -25,34 +33,25 @@ function Wheel({ range, value, onChange, onEnterTypeMode, label }: WheelProps) {
         setScrollOffset(-index * itemHeight);
     }, [value, range]);
 
-    const handleMouseDown = (e: React.MouseEvent) => {
+    const handlePointerDown = (e: React.PointerEvent) => {
         setIsDragging(true);
         setStartY(e.pageY - scrollOffset);
+        (e.target as HTMLElement).setPointerCapture(e.pointerId);
     };
 
-    const handleMouseMove = (e: React.MouseEvent) => {
+    const handlePointerMove = (e: React.PointerEvent) => {
         if (!isDragging) return;
         const newOffset = e.pageY - startY;
         setScrollOffset(newOffset);
     };
 
-    const handleMouseUp = () => {
+    const handlePointerUp = (e: React.PointerEvent) => {
         if (!isDragging) return;
         setIsDragging(false);
+        (e.target as HTMLElement).releasePointerCapture(e.pointerId);
         const index = Math.round(-scrollOffset / itemHeight);
         const safeIndex = Math.max(0, Math.min(range.length - 1, index));
         onChange(range[safeIndex]);
-    };
-
-    const handleTouchStart = (e: React.TouchEvent) => {
-        setIsDragging(true);
-        setStartY(e.touches[0].pageY - scrollOffset);
-    };
-
-    const handleTouchMove = (e: React.TouchEvent) => {
-        if (!isDragging) return;
-        const newOffset = e.touches[0].pageY - startY;
-        setScrollOffset(newOffset);
     };
 
     const handleWheel = (e: React.WheelEvent) => {
@@ -68,31 +67,16 @@ function Wheel({ range, value, onChange, onEnterTypeMode, label }: WheelProps) {
         onChange(range[nextIndex]);
     };
 
-    const startHold = (e: React.MouseEvent | React.TouchEvent, direction: 1 | -1) => {
-        e.stopPropagation(); // Prevent triggering type mode on parent if any
-        step(direction);
-        holdTimerRef.current = setTimeout(() => {
-            holdIntervalRef.current = setInterval(() => {
-                step(direction);
-            }, 100);
-        }, 300);
-    };
-
-    const stopHold = (e: React.MouseEvent | React.TouchEvent) => {
-        e.stopPropagation();
-        if (holdTimerRef.current) clearTimeout(holdTimerRef.current);
-        if (holdIntervalRef.current) clearInterval(holdIntervalRef.current);
-    };
+    const upHold = useHoldToRepeat(() => step(-1));
+    const downHold = useHoldToRepeat(() => step(1));
 
     return (
         <div className={styles.columnContainer}>
             <button
                 className={styles.scrollBtn}
-                onMouseDown={(e) => startHold(e, -1)}
-                onMouseUp={(e) => stopHold(e)}
-                onMouseLeave={(e) => stopHold(e)}
-                onTouchStart={(e) => startHold(e, -1)}
-                onTouchEnd={(e) => stopHold(e)}
+                onPointerDown={(e) => { e.stopPropagation(); upHold.start(); }}
+                onPointerUp={(e) => { e.stopPropagation(); upHold.stop(); }}
+                onPointerLeave={(e) => { e.stopPropagation(); upHold.stop(); }}
                 onClick={(e) => e.stopPropagation()}
                 aria-label={`Scroll ${label} up`}
             >
@@ -101,13 +85,9 @@ function Wheel({ range, value, onChange, onEnterTypeMode, label }: WheelProps) {
 
             <div
                 className={styles.column}
-                onMouseDown={handleMouseDown}
-                onMouseMove={handleMouseMove}
-                onMouseUp={handleMouseUp}
-                onMouseLeave={handleMouseUp}
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleMouseUp}
+                onPointerDown={handlePointerDown}
+                onPointerMove={handlePointerMove}
+                onPointerUp={handlePointerUp}
                 onWheel={handleWheel}
                 onClick={(e) => { e.stopPropagation(); onEnterTypeMode(); }}
             >
@@ -131,11 +111,9 @@ function Wheel({ range, value, onChange, onEnterTypeMode, label }: WheelProps) {
 
             <button
                 className={styles.scrollBtn}
-                onMouseDown={(e) => startHold(e, 1)}
-                onMouseUp={(e) => stopHold(e)}
-                onMouseLeave={(e) => stopHold(e)}
-                onTouchStart={(e) => startHold(e, 1)}
-                onTouchEnd={(e) => stopHold(e)}
+                onPointerDown={(e) => { e.stopPropagation(); downHold.start(); }}
+                onPointerUp={(e) => { e.stopPropagation(); downHold.stop(); }}
+                onPointerLeave={(e) => { e.stopPropagation(); downHold.stop(); }}
                 onClick={(e) => e.stopPropagation()}
                 aria-label={`Scroll ${label} down`}
             >

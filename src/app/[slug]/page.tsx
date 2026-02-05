@@ -2,6 +2,7 @@ import { parseSlug } from '@/lib/time';
 import HomeContainer from '@/components/HomeContainer';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { constructMetadata } from '@/lib/metadata';
 
 interface PageProps {
     params: { slug: string };
@@ -11,39 +12,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const { from, to } = parseSlug(params.slug);
 
     if (!from || !to) {
-        return {
-            title: 'Page Not Found | TimeSwitchr',
-        };
+        return constructMetadata({ title: 'Page Not Found' });
     }
 
-    const title = `${from.label} to ${to.label} Time Converter | TimeSwitchr`;
+    const title = `${from.label} to ${to.label} Time Converter`;
     const description = `Easily convert time from ${from.label} (${from.name}) to ${to.label} (${to.name}). Fast, minimalist, and real-time conversion with TimeSwitchr.`;
 
-    return {
+    return constructMetadata({
         title,
         description,
-        openGraph: {
-            title,
-            description,
-            url: `https://timeswitchr.com/${params.slug}`,
-            siteName: 'TimeSwitchr',
-            images: [
-                {
-                    url: '/og-image.png',
-                    width: 1200,
-                    height: 630,
-                    alt: `${from.label} to ${to.label} Time Converter`,
-                },
-            ],
-            type: 'website',
-        },
-        twitter: {
-            card: 'summary_large_image',
-            title,
-            description,
-            images: ['/og-image.png'],
-        }
-    };
+        urlPath: `/${params.slug}`
+    });
 }
 
 export default function PresetPage({ params }: PageProps) {

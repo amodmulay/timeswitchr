@@ -1,0 +1,31 @@
+.adNative {
+    margin: 2rem 0;
+    padding: 1rem;
+    background: var(--muted-background);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+
+.adSticky {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--muted-background);
+    padding: 1rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--muted);
+    display: block;
+}
+
+@media (min-width: 600px) {
+    .adSticky {
+        display: none !important;
+    }
+}
