@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { DateTime } from 'luxon';
+import styles from './HomeContainer.module.css';
 import Converter from '@/components/Converter';
 import { Presets, WorldClock } from '@/components/Extras';
 import { getLocalTimeZone } from '@/lib/time';
@@ -14,49 +15,15 @@ interface HomeContainerProps {
 }
 
 function AdPlaceholder({ id, type }: { id: string; type: 'native' | 'sticky' }) {
-    const isSticky = type === 'sticky';
-
     return (
         <div
             id={id}
-            className={isSticky ? 'sticky-ad' : 'native-ad'}
-            style={{
-                margin: isSticky ? '0' : '2rem 0',
-                padding: '1rem',
-                background: 'var(--muted-background)',
-                border: isSticky ? 'none' : '1px dashed var(--border)',
-                borderTop: isSticky ? '1px solid var(--border)' : '1px dashed var(--border)',
-                borderRadius: isSticky ? '0' : 'var(--radius)',
-                textAlign: 'center',
-                fontSize: '0.75rem',
-                color: 'var(--muted)',
-                ...(isSticky ? {
-                    position: 'fixed',
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    zIndex: 1000,
-                } : {})
-            }}
+            className={type === 'sticky' ? styles.adSticky : styles.adNative}
         >
             Ad Slot: {id} ({type})
         </div>
     );
 }
-
-const StickyAdStyles = () => (
-    <style dangerouslySetInnerHTML={{
-        __html: `
-    .sticky-ad {
-      display: block;
-    }
-    @media (min-width: 600px) {
-      .sticky-ad {
-        display: none !important;
-      }
-    }
-  `}} />
-);
 
 export default function HomeContainer({
     initialFrom,
@@ -111,7 +78,6 @@ export default function HomeContainer({
 
     return (
         <main className="container">
-            <StickyAdStyles />
             <h1>{title}</h1>
 
             <Converter
