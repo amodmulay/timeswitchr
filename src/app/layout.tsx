@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
+import ConsentBanner from "@/components/ConsentBanner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,13 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Google AdSense Placeholder */}
-        <Script
-          id="adsense-init"
-          strategy="lazyOnload"
-          crossOrigin="anonymous"
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_ID}`}
-        />
+        {/* AdSense and GA are loaded conditionally below */}
       </head>
       <body className={inter.className}>
         {children}
@@ -57,25 +52,53 @@ export default function RootLayout({
           </div>
         </footer>
 
-        {/* Google Analytics Placeholder */}
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script id="ga-script" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
-              page_path: window.location.pathname,
-            });
+        <ConsentBanner />
 
-            if ('serviceWorker' in navigator) {
-              window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/sw.js');
+        <Script id="consent-manager" strategy="afterInteractive">
+          {`
+            (function() {
+              const consent = localStorage.getItem('cookie-consent');
+              const GA_ID = '${process.env.NEXT_PUBLIC_GA_ID}';
+              const ADSENSE_ID = '${process.env.NEXT_PUBLIC_ADSENSE_ID}';
+
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              
+              // Set default consent to denied
+              gtag('consent', 'default', {
+                'analytics_storage': 'denied',
+                'ad_storage': 'denied'
               });
-            }
+
+              if (consent === 'accepted') {
+                gtag('consent', 'update', {
+                  'analytics_storage': 'granted',
+                  'ad_storage': 'granted'
+                });
+
+                // Load GA
+                const gaScript = document.createElement('script');
+                gaScript.async = true;
+                gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+                document.head.appendChild(gaScript);
+
+                gtag('js', new Date());
+                gtag('config', GA_ID);
+
+                // Load AdSense
+                const adsenseScript = document.createElement('script');
+                adsenseScript.async = true;
+                adsenseScript.crossOrigin = 'anonymous';
+                adsenseScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + ADSENSE_ID;
+                document.head.appendChild(adsenseScript);
+              }
+
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js');
+                });
+              }
+            })();
           `}
         </Script>
       </body>

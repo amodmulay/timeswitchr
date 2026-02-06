@@ -18,7 +18,18 @@ export default function PrivacyPage() {
                     overview of what happens to your personal data when you visit this website.
                 </p>
 
-                <h2 className="mt-8">2. Data Collection on This Website</h2>
+                <h2 className="mt-8">2. Cookie Consent</h2>
+                <p>
+                    When you first visit our website, we ask for your consent to use cookies for analytics and advertising
+                    purposes. You can choose to "Accept" or "Decline" this.
+                </p>
+                <p className="mt-4">
+                    If you "Decline", we will not load Google Analytics or Google AdSense scripts, and no tracking
+                    cookies will be set. Technically necessary data (like your timezone preferences) will still be
+                    stored in your browser's local storage.
+                </p>
+
+                <h2 className="mt-8">3. Data Collection on This Website</h2>
                 <p>
                     <strong>Cookies:</strong> This website uses cookies to improve your experience and for advertising
                     purposes (Google AdSense). You can manage your cookie settings in your browser.
