@@ -67,7 +67,7 @@ export default function RootLayout({
             (function() {
               const consent = localStorage.getItem('cookie-consent');
               const GA_ID = '${process.env.NEXT_PUBLIC_GA_ID}';
-              const ADSENSE_ID = '${process.env.NEXT_PUBLIC_ADSENSE_ID}';
+              const ADSENSE_ID = 'ca-pub-2123835135599458';
 
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
