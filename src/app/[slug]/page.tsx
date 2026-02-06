@@ -66,19 +66,39 @@ export default async function PresetPage({ params }: PageProps) {
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        '@context': 'https://schema.org',
-                        '@type': 'SoftwareApplication',
-                        'name': 'TimeSwitchr',
-                        'applicationCategory': 'UtilitiesApplication',
-                        'offers': {
-                            '@type': 'Offer',
-                            'price': '0',
-                            'priceCurrency': 'USD'
+                    __html: JSON.stringify([
+                        {
+                            '@context': 'https://schema.org',
+                            '@type': 'SoftwareApplication',
+                            'name': 'TimeSwitchr',
+                            'applicationCategory': 'UtilitiesApplication',
+                            'offers': {
+                                '@type': 'Offer',
+                                'price': '0',
+                                'priceCurrency': 'USD'
+                            },
+                            'description': description,
+                            'operatingSystem': 'All'
                         },
-                        'description': description,
-                        'operatingSystem': 'All'
-                    })
+                        {
+                            '@context': 'https://schema.org',
+                            '@type': 'BreadcrumbList',
+                            'itemListElement': [
+                                {
+                                    '@type': 'ListItem',
+                                    'position': 1,
+                                    'name': 'Home',
+                                    'item': 'https://timeswitchr.com'
+                                },
+                                {
+                                    '@type': 'ListItem',
+                                    'position': 2,
+                                    'name': title,
+                                    'item': `https://timeswitchr.com/${slug}`
+                                }
+                            ]
+                        }
+                    ])
                 }}
             />
         </>

@@ -24,6 +24,9 @@ export function constructMetadata({
         title: fullTitle,
         description,
         keywords: 'time zone converter, timezone conversion, CET to IST, IST to ET, EST to CET, PT to ET, minimalist world clock',
+        alternates: {
+            canonical: fullUrl,
+        },
         openGraph: {
             title: fullTitle,
             description,
