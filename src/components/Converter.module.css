@@ -6,10 +6,16 @@
     box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.zoneSelection {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;

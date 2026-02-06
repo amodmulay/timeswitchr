@@ -11,7 +11,7 @@ Timeswitchr is a high-performance, aesthetically pleasing web application design
 - **Relative Dating**: The system must clearly indicate if the converted time results in a "Next day" or "Previous day" relative to the source time.
 
 ### 2.2 Timezone Selection
-- **Searchability**: Users must be able to search for time zones by IANA ID (e.g., `Europe/Berlin`), City (e.g., `London`), or Country (e.g., `India`).
+- **Searchability**: Users must be able to search for time zones by IANA ID (e.g., `Europe/Berlin`), City (e.g., `London`, `Berlin`, `Pune`), or Country (e.g., `India`).
 - **Standardization**: Display names should be consistent, showing offset, abbreviation, and keywords.
 - **De-duplication**: The system should handle redundant timezone entries gracefully, preferring canonical IDs.
 

@@ -56,7 +56,7 @@ One of the core UX features is the mobile-friendly time picker.
 To improve Desktop and Mobile UX, the up/down buttons on the time picker use a custom hook that fires an action repeatedly if the user holds the button down.
 
 ### Searchable Timezones
-We don't just search by IANA ID. `src/lib/time.ts` uses a heuristic to map IANA IDs to common city and country names, making the search much more intuitive for users (e.g., searching "Paris" instead of just "Europe/Paris").
+We don't just search by IANA ID. `src/lib/time.ts` uses a heuristic to map IANA IDs to common city and country names, making the search much more intuitive for users (e.g., searching "Paris" instead of just "Europe/Paris"). We recently expanded this list to include cities like **Berlin** and **Pune**.
 
 ### PWA (Progressive Web App)
 The application is installable as a PWA.

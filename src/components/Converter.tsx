@@ -82,37 +82,39 @@ export default function Converter({
                 />
             </div>
 
-            <div className={styles.inputGroup}>
-                <label className={styles.label}>From</label>
-                <TimeZoneSelector
-                    value={fromZone}
-                    onChange={handleFromChange}
-                    label="From Time Zone"
-                />
-            </div>
+            <div className={styles.zoneSelection}>
+                <div className={styles.inputGroup}>
+                    <label className={styles.label}>From</label>
+                    <TimeZoneSelector
+                        value={fromZone}
+                        onChange={handleFromChange}
+                        label="From Time Zone"
+                    />
+                </div>
 
-            <button className={styles.swapButton} onClick={handleSwap} aria-label="Swap Time Zones">
-                <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                >
-                    <path d="M7 10l5-5 5 5M7 14l5 5 5-5" />
-                </svg>
-            </button>
+                <button className={styles.swapButton} onClick={handleSwap} aria-label="Swap Time Zones">
+                    <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                    >
+                        <path d="M7 10l5-5 5 5M7 14l5 5 5-5" />
+                    </svg>
+                </button>
 
-            <div className={styles.inputGroup}>
-                <label className={styles.label}>To</label>
-                <TimeZoneSelector
-                    value={toZone}
-                    onChange={handleToChange}
-                    label="To Time Zone"
-                />
+                <div className={styles.inputGroup}>
+                    <label className={styles.label}>To</label>
+                    <TimeZoneSelector
+                        value={toZone}
+                        onChange={handleToChange}
+                        label="To Time Zone"
+                    />
+                </div>
             </div>
 
             <div className={styles.resultSection}>

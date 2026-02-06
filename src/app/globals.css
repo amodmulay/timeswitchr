@@ -8,7 +8,7 @@
   --accent-foreground: #ffffff;
   --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --radius: 8px;
-  
+
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
@@ -52,7 +52,8 @@ button {
   transition: all 0.2s ease;
 }
 
-input, select {
+input,
+select {
   font-family: inherit;
   font-size: 1rem;
   border: 1px solid var(--border);
@@ -63,7 +64,8 @@ input, select {
   outline: none;
 }
 
-input:focus, select:focus {
+input:focus,
+select:focus {
   border-color: var(--accent);
 }
 
@@ -90,14 +92,46 @@ h2 {
 }
 
 /* Utility classes */
-.flex { display: flex; }
-.flex-col { flex-direction: column; }
-.items-center { align-items: center; }
-.justify-between { justify-content: space-between; }
-.gap-4 { gap: 1rem; }
-.gap-2 { gap: 0.5rem; }
-.mt-8 { margin-top: 2rem; }
-.text-sm { font-size: 0.875rem; }
-.text-muted { color: var(--muted); }
-.text-center { text-align: center; }
-.w-full { width: 100%; }
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.text-muted {
+  color: var(--muted);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.w-full {
+  width: 100%;
+}
