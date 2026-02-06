@@ -46,11 +46,16 @@ export default function RootLayout({
 
         <footer style={{ marginTop: '4rem', padding: '2rem 1rem', borderTop: '1px solid var(--border)', textAlign: 'center', fontSize: '0.875rem', color: 'var(--muted)' }}>
           <div className="container">
-            <nav style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem' }}>
-              <a href="/">Home</a>
+            <nav style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', marginBottom: '1rem' }}>
+              <a href="/" style={{ color: 'var(--foreground)', fontWeight: 500 }}>Home</a>
               <a href="/impressum">Impressum</a>
               <a href="/privacy">Privacy</a>
             </nav>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '1.25rem', fontSize: '0.75rem', opacity: 0.8 }}>
+              <span>Partners:</span>
+              <a href="https://www.thefiscaloracle.com/" target="_blank" rel="noopener">The Fiscal Oracle</a>
+              <a href="https://themvpletter.com/" target="_blank" rel="noopener">The MVP Letter</a>
+            </div>
             <p style={{ marginTop: '1rem' }}>© {new Date().getFullYear()} TimeSwitchr</p>
           </div>
         </footer>
