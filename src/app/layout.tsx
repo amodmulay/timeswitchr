@@ -6,9 +6,10 @@ import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://timeswitchr.com"),
   title: "TimeSwitchr | Minimalist Time Zone Converter",
   description: "Fast, minimalist time zone converter. Convert between CET, IST, ET, PT, and UTC with zero clicks.",
-  manifest: "/manifest.json",
+  manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",

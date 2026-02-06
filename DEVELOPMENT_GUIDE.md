@@ -64,6 +64,11 @@ The application is installable as a PWA.
 - **Service Worker**: `public/sw.js` handles basic caching for offline installability.
 - **Metadata**: `src/app/layout.tsx` contains PWA-specific viewport and meta tags.
 
+### Next.js 15 Dynamic APIs
+As of Next.js 15, dynamic APIs like `params` and `searchParams` are asynchronous.
+- **Dynamic Routes**: In `src/app/[slug]/page.tsx`, you must `await params` before accessing properties like `slug`.
+- **Metadata**: Similarly, in `generateMetadata`, `params` must be awaited.
+
 ## 5. Getting Started
 
 ### Local Development

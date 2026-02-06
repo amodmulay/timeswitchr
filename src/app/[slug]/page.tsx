@@ -5,11 +5,12 @@ import { notFound } from 'next/navigation';
 import { constructMetadata } from '@/lib/metadata';
 
 interface PageProps {
-    params: { slug: string };
+    params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-    const { from, to } = parseSlug(params.slug);
+    const { slug } = await params;
+    const { from, to } = parseSlug(slug);
 
     if (!from || !to) {
         return constructMetadata({ title: 'Page Not Found' });
@@ -21,12 +22,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return constructMetadata({
         title,
         description,
-        urlPath: `/${params.slug}`
+        urlPath: `/${slug}`
     });
 }
 
-export default function PresetPage({ params }: PageProps) {
-    const { from, to } = parseSlug(params.slug);
+export default async function PresetPage({ params }: PageProps) {
+    const { slug } = await params;
+    const { from, to } = parseSlug(slug);
 
     if (!from || !to) {
         notFound();
