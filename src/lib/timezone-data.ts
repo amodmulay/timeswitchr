@@ -19,6 +19,7 @@ export const EXTRA_CITIES: CityData[] = [
     { city: 'Hyderabad', country: 'India', tzId: 'Asia/Kolkata' },
     { city: 'Ahmedabad', country: 'India', tzId: 'Asia/Kolkata' },
     { city: 'Chennai', country: 'India', tzId: 'Asia/Kolkata' },
+    { city: 'Pune', country: 'India', tzId: 'Asia/Kolkata' },
     // USA
     { city: 'New York City', country: 'United States', tzId: 'America/New_York' },
     { city: 'Brooklyn', country: 'United States', tzId: 'America/New_York' },
