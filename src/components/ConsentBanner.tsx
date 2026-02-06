@@ -16,9 +16,18 @@ export default function ConsentBanner() {
     const handleAccept = () => {
         localStorage.setItem('cookie-consent', 'accepted');
         setIsVisible(false);
-        // Dispatch event to notify layout/scripts
+
+        // Update Google Consent Mode
+        if (typeof window !== 'undefined' && (window as any).gtag) {
+            (window as any).gtag('consent', 'update', {
+                'analytics_storage': 'granted',
+                'ad_storage': 'granted',
+                'personalization_storage': 'granted'
+            });
+        }
+
         window.dispatchEvent(new Event('cookie-consent-updated'));
-        window.location.reload(); // Reload to activate scripts
+        window.location.reload(); // Still reload to be safe and activate all features
     };
 
     const handleDecline = () => {

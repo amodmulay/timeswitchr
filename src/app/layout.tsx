@@ -62,51 +62,55 @@ export default function RootLayout({
 
         <ConsentBanner />
 
-        <Script id="consent-manager" strategy="afterInteractive">
+        {/* Google Tag Manager / Analytics */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+          strategy="afterInteractive"
+        />
+
+        {/* Google AdSense */}
+        <Script
+          id="adsense-init"
+          async
+          crossOrigin="anonymous"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2123835135599458"
+          strategy="afterInteractive"
+        />
+
+        <Script id="consent-manager" strategy="beforeInteractive">
           {`
-            (function() {
-              const consent = localStorage.getItem('cookie-consent');
-              const GA_ID = '${process.env.NEXT_PUBLIC_GA_ID}';
-              const ADSENSE_ID = 'ca-pub-2123835135599458';
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            
+            // 1. Initial consent state: denied
+            gtag('consent', 'default', {
+              'analytics_storage': 'denied',
+              'ad_storage': 'denied',
+              'personalization_storage': 'denied',
+              'functionality_storage': 'granted',
+              'security_storage': 'granted',
+              'wait_for_update': 500
+            });
 
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              
-              // Set default consent to denied
-              gtag('consent', 'default', {
-                'analytics_storage': 'denied',
-                'ad_storage': 'denied'
+            // 2. Load existing consent from localStorage
+            var consentState = localStorage.getItem('cookie-consent');
+            if (consentState === 'accepted') {
+              gtag('consent', 'update', {
+                'analytics_storage': 'granted',
+                'ad_storage': 'granted',
+                'personalization_storage': 'granted'
               });
+            }
 
-              if (consent === 'accepted') {
-                gtag('consent', 'update', {
-                  'analytics_storage': 'granted',
-                  'ad_storage': 'granted'
-                });
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+            gtag('config', 'ca-pub-2123835135599458');
 
-                // Load GA
-                const gaScript = document.createElement('script');
-                gaScript.async = true;
-                gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-                document.head.appendChild(gaScript);
-
-                gtag('js', new Date());
-                gtag('config', GA_ID);
-
-                // Load AdSense
-                const adsenseScript = document.createElement('script');
-                adsenseScript.async = true;
-                adsenseScript.crossOrigin = 'anonymous';
-                adsenseScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + ADSENSE_ID;
-                document.head.appendChild(adsenseScript);
-              }
-
-              if ('serviceWorker' in navigator) {
-                window.addEventListener('load', function() {
-                  navigator.serviceWorker.register('/sw.js');
-                });
-              }
-            })();
+            if ('serviceWorker' in navigator) {
+              window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js');
+              });
+            }
           `}
         </Script>
       </body>
