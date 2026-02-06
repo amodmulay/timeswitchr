@@ -11,6 +11,7 @@ export const EXTRA_CITIES: CityData[] = [
     { city: 'Frankfurt', country: 'Germany', tzId: 'Europe/Berlin' },
     { city: 'Stuttgart', country: 'Germany', tzId: 'Europe/Berlin' },
     { city: 'Dusseldorf', country: 'Germany', tzId: 'Europe/Berlin' },
+    { city: 'Berlin', country: 'Germany', tzId: 'Europe/Berlin' },
     // India
     { city: 'Mumbai', country: 'India', tzId: 'Asia/Kolkata' },
     { city: 'Delhi', country: 'India', tzId: 'Asia/Kolkata' },
