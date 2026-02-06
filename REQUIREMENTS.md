@@ -38,7 +38,12 @@ Timeswitchr is a high-performance, aesthetically pleasing web application design
 - **Premium Design**: Use modern design principles including glassmorphism, subtle gradients, and smooth CSS transitions.
 - **Consistency**: All components must use CSS Modules to ensure encapsulated styling.
 
-### 3.3 Accessibility & Compatibility
+### 3.3 Legal & Compliance (Germany)
+- **Impressum**: Must be accessible from every page (TMB/TMG compliance).
+- **Privacy Policy**: Must detail GDPR/DSGVO compliance, specifically regarding Google Analytics and AdSense data processing.
+- **Monetization**: Since the site is monetized, it is considered "geschäftsmäßig" and mandates full legal disclosure.
+
+### 3.4 Accessibility & Compatibility
 - **Responsive**: The layout must adapt seamlessly from mobile (320px) to ultra-wide desktops.
 - **Browser Support**: Target modern evergreen browsers (Chrome, Safari, Firefox, Edge).
 

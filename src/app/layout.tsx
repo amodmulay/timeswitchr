@@ -46,6 +46,17 @@ export default function RootLayout({
       <body className={inter.className}>
         {children}
 
+        <footer style={{ marginTop: '4rem', padding: '2rem 1rem', borderTop: '1px solid var(--border)', textAlign: 'center', fontSize: '0.875rem', color: 'var(--muted)' }}>
+          <div className="container">
+            <nav style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem' }}>
+              <a href="/">Home</a>
+              <a href="/impressum">Impressum</a>
+              <a href="/privacy">Privacy</a>
+            </nav>
+            <p style={{ marginTop: '1rem' }}>© {new Date().getFullYear()} TimeSwitchr</p>
+          </div>
+        </footer>
+
         {/* Google Analytics Placeholder */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
