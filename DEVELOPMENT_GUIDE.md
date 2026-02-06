@@ -58,6 +58,12 @@ To improve Desktop and Mobile UX, the up/down buttons on the time picker use a c
 ### Searchable Timezones
 We don't just search by IANA ID. `src/lib/time.ts` uses a heuristic to map IANA IDs to common city and country names, making the search much more intuitive for users (e.g., searching "Paris" instead of just "Europe/Paris").
 
+### PWA (Progressive Web App)
+The application is installable as a PWA.
+- **Manifest**: Located at `src/app/manifest.ts`, defining app identity and icons.
+- **Service Worker**: `public/sw.js` handles basic caching for offline installability.
+- **Metadata**: `src/app/layout.tsx` contains PWA-specific viewport and meta tags.
+
 ## 5. Getting Started
 
 ### Local Development

@@ -8,6 +8,22 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "TimeSwitchr | Minimalist Time Zone Converter",
   description: "Fast, minimalist time zone converter. Convert between CET, IST, ET, PT, and UTC with zero clicks.",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "TimeSwitchr",
+  },
+  formatDetection: {
+    telephone: false,
+  },
+};
+
+export const viewport = {
+  themeColor: "#000000",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({
@@ -42,6 +58,12 @@ export default function RootLayout({
             gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
               page_path: window.location.pathname,
             });
+
+            if ('serviceWorker' in navigator) {
+              window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js');
+              });
+            }
           `}
         </Script>
       </body>
