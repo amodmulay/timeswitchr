@@ -13,25 +13,32 @@ interface WheelProps {
 
 import { useHoldToRepeat } from '@/hooks/useHoldToRepeat';
 
-interface WheelProps {
-    range: number[];
-    value: number;
-    onChange: (val: number) => void;
-    onEnterTypeMode: () => void;
-    label: string;
+function useMobileItems() {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth <= 480);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    const itemHeight = isMobile ? 50 : 60;
+    const columnHeight = isMobile ? 100 : 120;
+
+    return { itemHeight, columnHeight };
 }
 
 function Wheel({ range, value, onChange, onEnterTypeMode, label }: WheelProps) {
     const [isDragging, setIsDragging] = useState(false);
     const [startY, setStartY] = useState(0);
     const [scrollOffset, setScrollOffset] = useState(0);
-
-    const itemHeight = 60;
+    const { itemHeight, columnHeight } = useMobileItems();
 
     useEffect(() => {
         const index = range.indexOf(value);
         setScrollOffset(-index * itemHeight);
-    }, [value, range]);
+    }, [value, range, itemHeight]);
 
     const handlePointerDown = (e: React.PointerEvent) => {
         setIsDragging(true);
@@ -94,7 +101,7 @@ function Wheel({ range, value, onChange, onEnterTypeMode, label }: WheelProps) {
                 <div
                     className={styles.scrollArea}
                     style={{
-                        transform: `translateY(${scrollOffset + (120 / 2) - (itemHeight / 2)}px)`,
+                        transform: `translateY(${scrollOffset + (columnHeight / 2) - (itemHeight / 2)}px)`,
                         transition: isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.23, 1, 0.32, 1)'
                     }}
                 >
