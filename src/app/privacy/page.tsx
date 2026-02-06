@@ -50,7 +50,19 @@ export default function PrivacyPage() {
                     to serve ads based on your previous visits to this and other websites.
                 </p>
 
-                <h2 className="mt-8">4. Your Rights</h2>
+                <h2 className="mt-8">4. Font Hosting</h2>
+                <p>
+                    For the aesthetic design of our website, we use "Inter" and "Baumans" fonts.
+                    These are provided via <strong>next/font</strong>, which means they are
+                    <strong>self-hosted</strong> on our own servers.
+                </p>
+                <p className="mt-4">
+                    When you visit our site, your browser downloads these fonts directly from our server.
+                    No connection is established to external servers (such as Google Fonts), and no
+                    personal data (like your IP address) is transmitted to third-party font providers.
+                </p>
+
+                <h2 className="mt-8">5. Your Rights</h2>
                 <p>
                     You have the right to receive information about the origin, recipient, and purpose of your
                     stored personal data at any time free of charge. You also have the right to request the

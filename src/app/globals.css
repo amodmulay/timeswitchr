@@ -9,7 +9,8 @@
   --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --radius: 8px;
 
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-branding: var(--font-baumans), cursive;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -77,11 +78,13 @@ select:focus {
 
 /* Typography */
 h1 {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-family: var(--font-branding);
+  font-size: 2.5rem;
+  font-weight: 400;
   margin-bottom: 2rem;
   text-align: center;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
 }
 
 h2 {
