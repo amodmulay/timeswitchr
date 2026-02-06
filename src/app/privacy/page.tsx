@@ -52,12 +52,12 @@ export default function PrivacyPage() {
 
                 <h2 className="mt-8">4. Font Hosting</h2>
                 <p>
-                    For the aesthetic design of our website, we use "Inter" and "Baumans" fonts.
-                    These are provided via <strong>next/font</strong>, which means they are
-                    <strong>self-hosted</strong> on our own servers.
+                    For the aesthetic design of our website, we use the "Inter" font.
+                    This is provided via <strong>next/font</strong>, which means it is
+                    <strong>self-hosted</strong> on our own server.
                 </p>
                 <p className="mt-4">
-                    When you visit our site, your browser downloads these fonts directly from our server.
+                    When you visit our site, your browser downloads this font directly from our server.
                     No connection is established to external servers (such as Google Fonts), and no
                     personal data (like your IP address) is transmitted to third-party font providers.
                 </p>

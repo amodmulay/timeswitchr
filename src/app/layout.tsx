@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Baumans } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import ConsentBanner from "@/components/ConsentBanner";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const baumans = Baumans({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-baumans"
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://timeswitchr.com"),
@@ -46,7 +41,7 @@ export default function RootLayout({
       <head>
         {/* AdSense and GA are loaded conditionally below */}
       </head>
-      <body className={`${inter.variable} ${baumans.variable} font-sans`}>
+      <body className={inter.className}>
         {children}
 
         <footer style={{ marginTop: '4rem', padding: '2rem 1rem', borderTop: '1px solid var(--border)', textAlign: 'center', fontSize: '0.875rem', color: 'var(--muted)' }}>
