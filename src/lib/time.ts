@@ -135,11 +135,14 @@ export function convertTime(
     //set the difference to = O if it is -0 as this is what the standard defines
     //The implementation of -0 and +0 is introduced in 1985 by IEEE as part of the IEEE 754 standard.
     //https://en.wikipedia.org/wiki/IEEE_754
-    let dayDiffInt = Math.round(dayDiff) + 0;
+    const dayDiffInt = Math.round(dayDiff) + 0;
     let dayLabel = 'Same day';
 
-    if (dayDiffInt > 0) dayLabel = `Next day (+${dayDiffInt})`;
-    if (dayDiffInt < 0) dayLabel = `Previous day (${dayDiffInt})`;
+    if (dayDiffInt > 0) {
+        dayLabel = `Next day (+${dayDiffInt})`;
+    } else if (dayDiffInt < 0) {
+        dayLabel = `Previous day (${dayDiffInt})`;
+    }
 
     return {
         convertedTime: toDateTime.toFormat('h:mm a'),
