@@ -132,14 +132,18 @@ export function convertTime(
     const toDateTime = fromDateTime.setZone(toZone);
 
     const dayDiff = toDateTime.startOf('day').diff(fromDateTime.startOf('day'), 'days').days;
-
+    //set the difference to = O if it is -0 as this is what the standard defines
+    //The implementation of -0 and +0 is introduced in 1985 by IEEE as part of the IEEE 754 standard.
+    //https://en.wikipedia.org/wiki/IEEE_754
+    let dayDiffInt = Math.round(dayDiff) + 0;
     let dayLabel = 'Same day';
-    if (dayDiff > 0) dayLabel = `Next day (+${Math.round(dayDiff)})`;
-    if (dayDiff < 0) dayLabel = `Previous day (${Math.round(dayDiff)})`;
+
+    if (dayDiffInt > 0) dayLabel = `Next day (+${dayDiffInt})`;
+    if (dayDiffInt < 0) dayLabel = `Previous day (${dayDiffInt})`;
 
     return {
         convertedTime: toDateTime.toFormat('h:mm a'),
-        dayDiff: Math.round(dayDiff),
+        dayDiff: dayDiffInt,
         dayLabel,
     };
 }
