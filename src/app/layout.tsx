@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import ConsentBanner from "@/components/ConsentBanner";
+import { Analytics } from '@vercel/analytics/next';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -43,6 +44,7 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         {children}
+        <Analytics />
 
         <footer style={{ marginTop: '4rem', padding: '2rem 1rem', borderTop: '1px solid var(--border)', textAlign: 'center', fontSize: '0.875rem', color: 'var(--muted)' }}>
           <div className="container">
