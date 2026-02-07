@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import ConsentBanner from "@/components/ConsentBanner";
-import { Analytics } from '@vercel/analytics/next';
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -58,7 +58,12 @@ export default function RootLayout({
               <a href="https://www.thefiscaloracle.com/" target="_blank" rel="noopener">The Fiscal Oracle</a>
               <a href="https://themvpletter.com/" target="_blank" rel="noopener">The MVP Letter</a>
             </div>
-            <p style={{ marginTop: '1rem' }}>© {new Date().getFullYear()} TimeSwitchr</p>
+            <p style={{ marginTop: '1rem' }}>
+              © {new Date().getFullYear()} TimeSwitchr
+              <span style={{ opacity: 0.5, marginLeft: '0.5rem', fontSize: '0.7rem' }}>
+                v{process.env.NEXT_PUBLIC_APP_VERSION}
+              </span>
+            </p>
           </div>
         </footer>
 
