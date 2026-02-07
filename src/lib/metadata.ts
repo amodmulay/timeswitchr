@@ -15,7 +15,7 @@ export function constructMetadata({
     title = DEFAULT_TITLE,
     description = DEFAULT_DESC,
     urlPath = '',
-    ogImage = '/og-image.png'
+    ogImage = '/opengraph-image'
 }: MetadataProps = {}): Metadata {
     const fullTitle = title.includes('TimeSwitchr') ? title : `${title} | TimeSwitchr`;
     const fullUrl = `${BASE_URL}${urlPath}`;

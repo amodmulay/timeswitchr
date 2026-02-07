@@ -22,7 +22,7 @@ export default function Home() {
     '@type': 'Organization',
     'name': 'TimeSwitchr',
     'url': 'https://timeswitchr.com',
-    'logo': 'https://timeswitchr.com/og-image.png',
+    'logo': 'https://timeswitchr.com/opengraph-image',
   };
 
   return (
