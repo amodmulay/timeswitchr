@@ -70,6 +70,32 @@
 .resultDay {
     font-size: 1rem;
     color: var(--muted);
+    margin-bottom: 1rem;
+}
+
+.addPresetButton {
+    background: transparent;
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--muted);
+    transition: all 0.2s;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+.addPresetButton:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--muted-background);
+}
+
+.addedBadge {
+    font-size: 0.75rem;
+    color: var(--accent);
+    font-weight: 600;
 }
 
 @media (max-width: 480px) {

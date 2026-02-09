@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { DateTime } from 'luxon';
-import { COMMON_TIMEZONES, WORLD_CLOCK_ZONES } from '@/lib/time';
+import { COMMON_TIMEZONES, WORLD_CLOCK_ZONES, convertTime, getBestCityForZone } from '@/lib/time';
 import styles from './Extras.module.css';
 import { trackEvent } from '@/lib/analytics';
 
@@ -20,7 +20,14 @@ const PRESETS: Preset[] = [
     { from: 'UTC', to: 'Asia/Kolkata', label: 'UTC → IST' },
 ];
 
-export function Presets({ onSelect }: { onSelect: (from: string, to: string) => void }) {
+interface PresetsProps {
+    onSelect: (from: string, to: string) => void;
+    userPresets?: string[];
+    baseTime?: string;
+    baseZone?: string;
+}
+
+export function Presets({ onSelect, userPresets = [], baseTime = '12:00', baseZone = 'UTC' }: PresetsProps) {
     const handleSelect = (from: string, to: string, label: string) => {
         onSelect(from, to);
         trackEvent({
@@ -29,6 +36,38 @@ export function Presets({ onSelect }: { onSelect: (from: string, to: string) => 
             label: label
         });
     };
+
+    if (userPresets.length > 0) {
+        return (
+            <div className={styles.userPresetsGrid}>
+                {userPresets.map((zoneId) => {
+                    const result = convertTime(baseTime, baseZone, zoneId);
+                    const city = getBestCityForZone(zoneId);
+                    const now = DateTime.now().setZone(zoneId);
+                    const abbrev = now.toFormat('ZZZZ');
+
+                    return (
+                        <div
+                            key={zoneId}
+                            className={styles.clockItem}
+                            style={{ cursor: 'pointer' }}
+                            onClick={() => handleSelect(baseZone, zoneId, `User Preset ${city}`)}
+                        >
+                            <span className={styles.clockLabel}>{city}</span>
+                            <span className={styles.clockTime}>{result.convertedTime}</span>
+                            <span className={styles.clockDate}>{now.toFormat('ccc, LLL d')}</span>
+                            <span style={{ fontSize: '0.65rem', opacity: 0.6, marginTop: '0.25rem' }}>
+                                {abbrev}
+                            </span>
+                        </div>
+                    );
+                })}
+                <p className={styles.privacyNote}>
+                    Presets are stored locally in your browser and never sent to a server.
+                </p>
+            </div>
+        );
+    }
 
     return (
         <div className={styles.presets}>
@@ -46,20 +85,25 @@ export function Presets({ onSelect }: { onSelect: (from: string, to: string) => 
 }
 
 export function WorldClock() {
-    const [times, setTimes] = useState<Record<string, { time: string, date: string }>>({});
+    const [times, setTimes] = useState<Record<string, { time: string, date: string, city: string, abbrev: string }>>({});
 
     useEffect(() => {
         const update = () => {
             const now = DateTime.now();
-            const newTimes: Record<string, { time: string, date: string }> = {};
+            const newTimes: Record<string, { time: string, date: string, city: string, abbrev: string }> = {};
 
             WORLD_CLOCK_ZONES.forEach(z => {
                 const tz = COMMON_TIMEZONES.find(t => t.id === z);
                 if (tz) {
                     const zTime = now.setZone(z);
-                    newTimes[tz.label] = {
+                    const city = getBestCityForZone(z);
+                    const abbrev = zTime.toFormat('ZZZZ');
+
+                    newTimes[z] = {
                         time: zTime.toFormat('h:mm a'),
-                        date: zTime.toFormat('ccc, LLL d')
+                        date: zTime.toFormat('ccc, LLL d'),
+                        city,
+                        abbrev
                     };
                 }
             });
@@ -73,11 +117,14 @@ export function WorldClock() {
 
     return (
         <div className={styles.worldClock}>
-            {Object.entries(times).map(([label, info]) => (
-                <div key={label} className={styles.clockItem}>
-                    <span className={styles.clockLabel}>{label}</span>
+            {Object.entries(times).map(([zoneId, info]) => (
+                <div key={zoneId} className={styles.clockItem}>
+                    <span className={styles.clockLabel}>{info.city}</span>
                     <span className={styles.clockTime}>{info.time}</span>
                     <span className={styles.clockDate}>{info.date}</span>
+                    <span style={{ fontSize: '0.65rem', opacity: 0.6, marginTop: '0.25rem' }}>
+                        {info.abbrev}
+                    </span>
                 </div>
             ))}
         </div>
