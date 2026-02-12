@@ -2,11 +2,11 @@
     background: var(--background);
     border: 1px solid var(--border);
     border-radius: calc(var(--radius) * 2);
-    padding: 2.5rem;
+    padding: 1.5rem;
     box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.25rem;
 }
 
 .inputGroup {
@@ -57,7 +57,7 @@
 
 .resultSection {
     text-align: center;
-    padding-top: 1rem;
+    padding-top: 0.75rem;
     border-top: 1px solid var(--border);
 }
 
@@ -74,22 +74,23 @@
 }
 
 .addPresetButton {
-    background: transparent;
-    border: 1px dashed var(--border);
+    background: #ff6b35;
+    border: 1px solid #ff6b35;
     border-radius: var(--radius);
     padding: 0.5rem 1rem;
     font-size: 0.75rem;
-    font-weight: 500;
-    color: var(--muted);
+    font-weight: 600;
+    color: white;
     transition: all 0.2s;
     cursor: pointer;
     margin: 0 auto;
 }
 
 .addPresetButton:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: var(--muted-background);
+    background: #ff8555;
+    border-color: #ff8555;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
 }
 
 .addedBadge {

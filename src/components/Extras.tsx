@@ -13,11 +13,12 @@ interface Preset {
 }
 
 const PRESETS: Preset[] = [
-    { from: 'Europe/Berlin', to: 'Asia/Kolkata', label: 'CET → IST' },
-    { from: 'Asia/Kolkata', to: 'America/New_York', label: 'IST → ET' },
-    { from: 'Europe/Berlin', to: 'America/New_York', label: 'CET → ET' },
-    { from: 'Europe/Berlin', to: 'America/Los_Angeles', label: 'CET → PT' },
-    { from: 'UTC', to: 'Asia/Kolkata', label: 'UTC → IST' },
+    { from: 'America/New_York', to: 'Asia/Kolkata', label: 'US → India' },
+    { from: 'America/New_York', to: 'Asia/Shanghai', label: 'US → China' },
+    { from: 'America/New_York', to: 'Asia/Tokyo', label: 'US → Japan' },
+    { from: 'Europe/Berlin', to: 'Asia/Kolkata', label: 'CET → India' },
+    { from: 'Europe/Berlin', to: 'Asia/Shanghai', label: 'CET → China' },
+    { from: 'Europe/Berlin', to: 'Asia/Tokyo', label: 'CET → Japan' },
 ];
 
 interface PresetsProps {

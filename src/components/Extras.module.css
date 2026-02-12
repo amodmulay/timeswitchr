@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     justify-content: center;
 }
 
@@ -27,7 +27,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 1rem;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 }
 
 .clockItem {
@@ -66,12 +66,24 @@
     font-size: 0.7rem;
     color: var(--muted);
     opacity: 0.6;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .userPresetsGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
-    margin-top: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .userPresetsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .userPresetsGrid {
+        grid-template-columns: 1fr;
+    }
 }

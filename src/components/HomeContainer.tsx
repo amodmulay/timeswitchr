@@ -84,7 +84,7 @@ export default function HomeContainer({
         setUserPresets(prev => {
             const next = prev.filter(p => p !== zone);
             next.unshift(zone); // Add to front
-            return next.slice(0, 4); // Keep only 4
+            return next.slice(0, 3); // Keep only 3
         });
     };
 
@@ -92,24 +92,21 @@ export default function HomeContainer({
         <main className="container">
             <h1>{title}</h1>
 
-            <Converter
-                time={time}
-                setTime={setTime}
-                fromZone={fromZone}
-                setFromZone={setFromZone}
-                toZone={toZone}
-                setToZone={setToZone}
-                is24h={is24h}
-                onToggle24h={setIs24h}
-                onAddPreset={handleAddPreset}
-                isPreset={userPresets.includes(toZone)}
-            />
-
-            <AdPlaceholder id="native-ad-1" type="native" />
-
-            {userPresets.length > 0 && (
+            {userPresets.length > 0 ? (
                 <>
-                    <h2 className="mt-8 text-center">Your Presets</h2>
+                    <div className={styles.sectionHeader}>
+                        <h2 className="text-center">Your Presets</h2>
+                        <button
+                            className={styles.clearButton}
+                            onClick={() => {
+                                if (confirm('Clear all your saved presets?')) {
+                                    setUserPresets([]);
+                                }
+                            }}
+                        >
+                            - Clear
+                        </button>
+                    </div>
                     <Presets
                         userPresets={userPresets}
                         onSelect={handlePresetSelect}
@@ -117,12 +114,42 @@ export default function HomeContainer({
                         baseZone={fromZone}
                     />
                 </>
+            ) : (
+                <>
+                    <h2 className="mt-8 text-center">Popular Conversions</h2>
+                    <p style={{ textAlign: 'center', fontSize: '0.875rem', color: 'var(--muted)', marginTop: '0.5rem' }}>
+                        Try these common timezone pairs
+                    </p>
+                    <Presets
+                        userPresets={[]}
+                        onSelect={handlePresetSelect}
+                        baseTime={time}
+                        baseZone={fromZone}
+                    />
+                </>
             )}
+
+            <div className="mt-8">
+                <Converter
+                    time={time}
+                    setTime={setTime}
+                    fromZone={fromZone}
+                    setFromZone={setFromZone}
+                    toZone={toZone}
+                    setToZone={setToZone}
+                    is24h={is24h}
+                    onToggle24h={setIs24h}
+                    onAddPreset={handleAddPreset}
+                    isPreset={userPresets.includes(toZone)}
+                />
+            </div>
+
+            <AdPlaceholder id="native-ad-1" type="native" />
 
             <h2 className="mt-8 text-center">World Clock</h2>
             <WorldClock />
 
-            <section className="mt-8 text-sm text-muted" style={{ maxWidth: '600px', margin: '2rem auto 0' }}>
+            <section className="mt-8 text-sm text-muted" style={{ maxWidth: '600px', margin: '1.25rem auto 0' }}>
                 {(description || `TimeSwitchr is a minimalist time zone converter designed for speed. 
           Instantly convert between CET, IST, ET, PT, and more with zero clicks.
           Perfect for scheduled meetings and international calls.`).split('\n\n').map((para, i) => (
