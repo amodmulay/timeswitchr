@@ -11,6 +11,7 @@ export interface TimeZone {
 export const COMMON_TIMEZONES: TimeZone[] = [
     { id: 'UTC', label: 'UTC', name: 'Universal Coordinated Time' },
     { id: 'Europe/Berlin', label: 'CET', name: 'Central European Time' },
+    { id: 'Europe/Athens', label: 'EET', name: 'Eastern European Time' },
     { id: 'Asia/Kolkata', label: 'IST', name: 'India Standard Time' },
     { id: 'America/New_York', label: 'ET', name: 'Eastern Time' },
     { id: 'America/Los_Angeles', label: 'PT', name: 'Pacific Time' },

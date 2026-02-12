@@ -12,6 +12,15 @@ export const EXTRA_CITIES: CityData[] = [
     { city: 'Stuttgart', country: 'Germany', tzId: 'Europe/Berlin' },
     { city: 'Dusseldorf', country: 'Germany', tzId: 'Europe/Berlin' },
     { city: 'Berlin', country: 'Germany', tzId: 'Europe/Berlin' },
+    // EET (Eastern European Time)
+    { city: 'Athens', country: 'Greece', tzId: 'Europe/Athens' },
+    { city: 'Bucharest', country: 'Romania', tzId: 'Europe/Bucharest' },
+    { city: 'Helsinki', country: 'Finland', tzId: 'Europe/Helsinki' },
+    { city: 'Kyiv', country: 'Ukraine', tzId: 'Europe/Kyiv' },
+    { city: 'Sofia', country: 'Bulgaria', tzId: 'Europe/Sofia' },
+    { city: 'Tallinn', country: 'Estonia', tzId: 'Europe/Tallinn' },
+    { city: 'Riga', country: 'Latvia', tzId: 'Europe/Riga' },
+    { city: 'Vilnius', country: 'Lithuania', tzId: 'Europe/Vilnius' },
     // India
     { city: 'Mumbai', country: 'India', tzId: 'Asia/Kolkata' },
     { city: 'Delhi', country: 'India', tzId: 'Asia/Kolkata' },
