@@ -107,13 +107,17 @@ export default function HomeContainer({
 
             <AdPlaceholder id="native-ad-1" type="native" />
 
-            <h2 className="mt-8 text-center">{userPresets.length > 0 ? 'Your Presets' : 'Quick Presets'}</h2>
-            <Presets
-                userPresets={userPresets}
-                onSelect={handlePresetSelect}
-                baseTime={time}
-                baseZone={fromZone}
-            />
+            {userPresets.length > 0 && (
+                <>
+                    <h2 className="mt-8 text-center">Your Presets</h2>
+                    <Presets
+                        userPresets={userPresets}
+                        onSelect={handlePresetSelect}
+                        baseTime={time}
+                        baseZone={fromZone}
+                    />
+                </>
+            )}
 
             <h2 className="mt-8 text-center">World Clock</h2>
             <WorldClock />
