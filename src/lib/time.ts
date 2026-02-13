@@ -177,19 +177,18 @@ export function convertTime(
 }
 
 export function getBestCityForZone(zoneId: string): string {
-    // 1. Check EXTRA_CITIES for a main city in this zone
-    const mainCity = EXTRA_CITIES.find(c => isSameZone(c.tzId, zoneId) && c.isMain);
-    if (mainCity) return mainCity.city;
+    // 1. Check EXTRA_CITIES for an exact match or same zone
+    const exactMatch = EXTRA_CITIES.find(c => c.tzId === zoneId);
+    if (exactMatch) return exactMatch.city;
 
-    // 2. Check EXTRA_CITIES for any city in this zone
-    const anyCity = EXTRA_CITIES.find(c => isSameZone(c.tzId, zoneId));
-    if (anyCity) return anyCity.city;
+    const sameZoneMatch = EXTRA_CITIES.find(c => isSameZone(c.tzId, zoneId));
+    if (sameZoneMatch) return sameZoneMatch.city;
 
-    // 3. Check COUNTRY_PRIMARY_TZ
+    // 2. Check COUNTRY_PRIMARY_TZ
     const primaryTzMatch = Object.entries(COUNTRY_PRIMARY_TZ).find(([, tz]) => isSameZone(tz, zoneId));
     if (primaryTzMatch) return primaryTzMatch[0];
 
-    // 4. Fallback to the city part of the IANA ID
+    // 3. Fallback to the city part of the IANA ID
     return zoneId.split('/').pop()?.replace(/_/g, ' ') || zoneId;
 }
 
