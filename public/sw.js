@@ -1,9 +1,8 @@
 const CACHE_NAME = 'timeswitchr-v1';
 const ASSETS_TO_CACHE = [
     '/',
-    '/manifest.json',
-    '/icon-192x192.png',
-    '/icon-512x512.png'
+    '/manifest.webmanifest',
+    '/icon.svg'
 ];
 
 self.addEventListener('install', (event) => {
