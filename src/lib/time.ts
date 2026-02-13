@@ -176,6 +176,22 @@ export function convertTime(
     };
 }
 
+export function getBestCityForZone(zoneId: string): string {
+    // 1. Check EXTRA_CITIES for an exact match or same zone
+    const exactMatch = EXTRA_CITIES.find(c => c.tzId === zoneId);
+    if (exactMatch) return exactMatch.city;
+
+    const sameZoneMatch = EXTRA_CITIES.find(c => isSameZone(c.tzId, zoneId));
+    if (sameZoneMatch) return sameZoneMatch.city;
+
+    // 2. Check COUNTRY_PRIMARY_TZ
+    const primaryTzMatch = Object.entries(COUNTRY_PRIMARY_TZ).find(([, tz]) => isSameZone(tz, zoneId));
+    if (primaryTzMatch) return primaryTzMatch[0];
+
+    // 3. Fallback to the city part of the IANA ID
+    return zoneId.split('/').pop()?.replace(/_/g, ' ') || zoneId;
+}
+
 export function getLocalTimeZone(): TimeZone {
     const iana = DateTime.now().zoneName;
     const all = getAllTimeZones();

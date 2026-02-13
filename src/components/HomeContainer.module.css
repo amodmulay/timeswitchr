@@ -29,3 +29,36 @@
         display: none !important;
     }
 }
+
+.sectionHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    position: relative;
+    margin-top: 1.25rem;
+}
+
+.sectionHeader h2 {
+    margin-bottom: 0;
+}
+
+.clearButton {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: white;
+    background: #ff6b35;
+    border: 1px solid #ff6b35;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.clearButton:hover {
+    background: #ff8555;
+    border-color: #ff8555;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+}
