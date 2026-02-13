@@ -2,6 +2,7 @@ export interface CityData {
     city: string;
     country: string;
     tzId: string;
+    isMain?: boolean;
 }
 
 export const EXTRA_CITIES: CityData[] = [
@@ -11,20 +12,29 @@ export const EXTRA_CITIES: CityData[] = [
     { city: 'Frankfurt', country: 'Germany', tzId: 'Europe/Berlin' },
     { city: 'Stuttgart', country: 'Germany', tzId: 'Europe/Berlin' },
     { city: 'Dusseldorf', country: 'Germany', tzId: 'Europe/Berlin' },
-    { city: 'Berlin', country: 'Germany', tzId: 'Europe/Berlin' },
+    { city: 'Berlin', country: 'Germany', tzId: 'Europe/Berlin', isMain: true },
+    // EET (Eastern European Time)
+    { city: 'Athens', country: 'Greece', tzId: 'Europe/Athens', isMain: true },
+    { city: 'Bucharest', country: 'Romania', tzId: 'Europe/Bucharest', isMain: true },
+    { city: 'Helsinki', country: 'Finland', tzId: 'Europe/Helsinki', isMain: true },
+    { city: 'Kyiv', country: 'Ukraine', tzId: 'Europe/Kyiv', isMain: true },
+    { city: 'Sofia', country: 'Bulgaria', tzId: 'Europe/Sofia', isMain: true },
+    { city: 'Tallinn', country: 'Estonia', tzId: 'Europe/Tallinn', isMain: true },
+    { city: 'Riga', country: 'Latvia', tzId: 'Europe/Riga', isMain: true },
+    { city: 'Vilnius', country: 'Lithuania', tzId: 'Europe/Vilnius', isMain: true },
     // India
-    { city: 'Mumbai', country: 'India', tzId: 'Asia/Kolkata' },
-    { city: 'Delhi', country: 'India', tzId: 'Asia/Kolkata' },
+    { city: 'Mumbai', country: 'India', tzId: 'Asia/Kolkata', isMain: true },
+    { city: 'Delhi', country: 'India', tzId: 'Asia/Kolkata', isMain: true },
     { city: 'Bangalore', country: 'India', tzId: 'Asia/Kolkata' },
     { city: 'Hyderabad', country: 'India', tzId: 'Asia/Kolkata' },
     { city: 'Ahmedabad', country: 'India', tzId: 'Asia/Kolkata' },
     { city: 'Chennai', country: 'India', tzId: 'Asia/Kolkata' },
     { city: 'Pune', country: 'India', tzId: 'Asia/Kolkata' },
     // USA
-    { city: 'New York City', country: 'United States', tzId: 'America/New_York' },
+    { city: 'New York City', country: 'United States', tzId: 'America/New_York', isMain: true },
     { city: 'Brooklyn', country: 'United States', tzId: 'America/New_York' },
-    { city: 'Los Angeles', country: 'United States', tzId: 'America/Los_Angeles' },
-    { city: 'Chicago', country: 'United States', tzId: 'America/Chicago' },
+    { city: 'Los Angeles', country: 'United States', tzId: 'America/Los_Angeles', isMain: true },
+    { city: 'Chicago', country: 'United States', tzId: 'America/Chicago', isMain: true },
     { city: 'Houston', country: 'United States', tzId: 'America/Chicago' },
     { city: 'Phoenix', country: 'United States', tzId: 'America/Phoenix' },
     { city: 'Philadelphia', country: 'United States', tzId: 'America/New_York' },
@@ -37,31 +47,31 @@ export const EXTRA_CITIES: CityData[] = [
     { city: 'Seattle', country: 'United States', tzId: 'America/Los_Angeles' },
     { city: 'Miami', country: 'United States', tzId: 'America/New_York' },
     // UK
-    { city: 'London', country: 'United Kingdom', tzId: 'Europe/London' },
+    { city: 'London', country: 'United Kingdom', tzId: 'Europe/London', isMain: true },
     { city: 'Birmingham', country: 'United Kingdom', tzId: 'Europe/London' },
     { city: 'Manchester', country: 'United Kingdom', tzId: 'Europe/London' },
     { city: 'Glasgow', country: 'United Kingdom', tzId: 'Europe/London' },
     { city: 'Liverpool', country: 'United Kingdom', tzId: 'Europe/London' },
     // France
-    { city: 'Paris', country: 'France', tzId: 'Europe/Paris' },
+    { city: 'Paris', country: 'France', tzId: 'Europe/Paris', isMain: true },
     { city: 'Marseille', country: 'France', tzId: 'Europe/Paris' },
     { city: 'Lyon', country: 'France', tzId: 'Europe/Paris' },
     { city: 'Toulouse', country: 'France', tzId: 'Europe/Paris' },
     { city: 'Nice', country: 'France', tzId: 'Europe/Paris' },
     // Canada
-    { city: 'Toronto', country: 'Canada', tzId: 'America/Toronto' },
+    { city: 'Toronto', country: 'Canada', tzId: 'America/Toronto', isMain: true },
     { city: 'Montreal', country: 'Canada', tzId: 'America/Toronto' },
     { city: 'Vancouver', country: 'Canada', tzId: 'America/Vancouver' },
     { city: 'Calgary', country: 'Canada', tzId: 'America/Edmonton' },
     { city: 'Ottawa', country: 'Canada', tzId: 'America/Toronto' },
     // Australia
-    { city: 'Sydney', country: 'Australia', tzId: 'Australia/Sydney' },
+    { city: 'Sydney', country: 'Australia', tzId: 'Australia/Sydney', isMain: true },
     { city: 'Melbourne', country: 'Australia', tzId: 'Australia/Melbourne' },
     { city: 'Brisbane', country: 'Australia', tzId: 'Australia/Brisbane' },
     { city: 'Perth', country: 'Australia', tzId: 'Australia/Perth' },
     { city: 'Adelaide', country: 'Australia', tzId: 'Australia/Adelaide' },
     // Japan
-    { city: 'Tokyo', country: 'Japan', tzId: 'Asia/Tokyo' },
+    { city: 'Tokyo', country: 'Japan', tzId: 'Asia/Tokyo', isMain: true },
     { city: 'Yokohama', country: 'Japan', tzId: 'Asia/Tokyo' },
     { city: 'Osaka', country: 'Japan', tzId: 'Asia/Tokyo' },
     { city: 'Nagoya', country: 'Japan', tzId: 'Asia/Tokyo' },
@@ -69,7 +79,7 @@ export const EXTRA_CITIES: CityData[] = [
     // Brazil
     { city: 'Sao Paulo', country: 'Brazil', tzId: 'America/Sao_Paulo' },
     { city: 'Rio de Janeiro', country: 'Brazil', tzId: 'America/Sao_Paulo' },
-    { city: 'Brasilia', country: 'Brazil', tzId: 'America/Sao_Paulo' },
+    { city: 'Brasilia', country: 'Brazil', tzId: 'America/Sao_Paulo', isMain: true },
     { city: 'Salvador', country: 'Brazil', tzId: 'America/Bahia' },
     { city: 'Fortaleza', country: 'Brazil', tzId: 'America/Fortaleza' },
     // China
@@ -83,90 +93,90 @@ export const EXTRA_CITIES: CityData[] = [
     { city: 'Abu Dhabi', country: 'United Arab Emirates', tzId: 'Asia/Dubai' },
     { city: 'Sharjah', country: 'United Arab Emirates', tzId: 'Asia/Dubai' },
     // Spain
-    { city: 'Madrid', country: 'Spain', tzId: 'Europe/Madrid' },
+    { city: 'Madrid', country: 'Spain', tzId: 'Europe/Madrid', isMain: true },
     { city: 'Barcelona', country: 'Spain', tzId: 'Europe/Madrid' },
     { city: 'Valencia', country: 'Spain', tzId: 'Europe/Madrid' },
     { city: 'Seville', country: 'Spain', tzId: 'Europe/Madrid' },
     // Italy
-    { city: 'Rome', country: 'Italy', tzId: 'Europe/Rome' },
+    { city: 'Rome', country: 'Italy', tzId: 'Europe/Rome', isMain: true },
     { city: 'Milan', country: 'Italy', tzId: 'Europe/Rome' },
     { city: 'Naples', country: 'Italy', tzId: 'Europe/Rome' },
     { city: 'Turin', country: 'Italy', tzId: 'Europe/Rome' },
     // Russia
-    { city: 'Moscow', country: 'Russia', tzId: 'Europe/Moscow' },
+    { city: 'Moscow', country: 'Russia', tzId: 'Europe/Moscow', isMain: true },
     { city: 'Saint Petersburg', country: 'Russia', tzId: 'Europe/Moscow' },
     { city: 'Novosibirsk', country: 'Russia', tzId: 'Asia/Novosibirsk' },
     { city: 'Yekaterinburg', country: 'Russia', tzId: 'Asia/Yekaterinburg' },
     // Switzerland
-    { city: 'Zurich', country: 'Switzerland', tzId: 'Europe/Zurich' },
+    { city: 'Zurich', country: 'Switzerland', tzId: 'Europe/Zurich', isMain: true },
     { city: 'Geneva', country: 'Switzerland', tzId: 'Europe/Zurich' },
     { city: 'Basel', country: 'Switzerland', tzId: 'Europe/Zurich' },
     // Netherlands
-    { city: 'Amsterdam', country: 'Netherlands', tzId: 'Europe/Amsterdam' },
+    { city: 'Amsterdam', country: 'Netherlands', tzId: 'Europe/Amsterdam', isMain: true },
     { city: 'Rotterdam', country: 'Netherlands', tzId: 'Europe/Amsterdam' },
     { city: 'The Hague', country: 'Netherlands', tzId: 'Europe/Amsterdam' },
     // Singapore
-    { city: 'Singapore', country: 'Singapore', tzId: 'Asia/Singapore' },
+    { city: 'Singapore', country: 'Singapore', tzId: 'Asia/Singapore', isMain: true },
     // Ireland
-    { city: 'Dublin', country: 'Ireland', tzId: 'Europe/Dublin' },
+    { city: 'Dublin', country: 'Ireland', tzId: 'Europe/Dublin', isMain: true },
     { city: 'Cork', country: 'Ireland', tzId: 'Europe/Dublin' },
     // South Africa
-    { city: 'Johannesburg', country: 'South Africa', tzId: 'Africa/Johannesburg' },
+    { city: 'Johannesburg', country: 'South Africa', tzId: 'Africa/Johannesburg', isMain: true },
     { city: 'Cape Town', country: 'South Africa', tzId: 'Africa/Johannesburg' },
     { city: 'Durban', country: 'South Africa', tzId: 'Africa/Johannesburg' },
     { city: 'Pretoria', country: 'South Africa', tzId: 'Africa/Johannesburg' },
     // Mexico
-    { city: 'Guadalajara', country: 'Mexico', tzId: 'America/Mexico_City' },
-    { city: 'Monterrey', country: 'Mexico', tzId: 'America/Monterrey' },
-    { city: 'Cancun', country: 'Mexico', tzId: 'America/Cancun' },
+    { city: 'Guadalajara', country: 'Mexico', tzId: 'America/Mexico_City', isMain: true },
+    { city: 'Monterrey', country: 'Mexico', tzId: 'America/Monterrey', isMain: true },
+    { city: 'Cancun', country: 'Mexico', tzId: 'America/Cancun', isMain: true },
     { city: 'Tijuana', country: 'Mexico', tzId: 'America/Tijuana' },
     // Turkey
-    { city: 'Istanbul', country: 'Turkey', tzId: 'Europe/Istanbul' },
+    { city: 'Istanbul', country: 'Turkey', tzId: 'Europe/Istanbul', isMain: true },
     { city: 'Ankara', country: 'Turkey', tzId: 'Europe/Istanbul' },
     { city: 'Izmir', country: 'Turkey', tzId: 'Europe/Istanbul' },
     // Thailand
-    { city: 'Bangkok', country: 'Thailand', tzId: 'Asia/Bangkok' },
+    { city: 'Bangkok', country: 'Thailand', tzId: 'Asia/Bangkok', isMain: true },
     { city: 'Phuket', country: 'Thailand', tzId: 'Asia/Bangkok' },
     { city: 'Chiang Mai', country: 'Thailand', tzId: 'Asia/Bangkok' },
     // Vietnam
-    { city: 'Ho Chi Minh City', country: 'Vietnam', tzId: 'Asia/Ho_Chi_Minh' },
+    { city: 'Ho Chi Minh City', country: 'Vietnam', tzId: 'Asia/Ho_Chi_Minh', isMain: true },
     { city: 'Hanoi', country: 'Vietnam', tzId: 'Asia/Ho_Chi_Minh' },
     { city: 'Da Nang', country: 'Vietnam', tzId: 'Asia/Ho_Chi_Minh' },
     // Indonesia
-    { city: 'Jakarta', country: 'Indonesia', tzId: 'Asia/Jakarta' },
+    { city: 'Jakarta', country: 'Indonesia', tzId: 'Asia/Jakarta', isMain: true },
     { city: 'Surabaya', country: 'Indonesia', tzId: 'Asia/Jakarta' },
     { city: 'Bandung', country: 'Indonesia', tzId: 'Asia/Jakarta' },
     { city: 'Bali', country: 'Indonesia', tzId: 'Asia/Makassar' },
     // Malaysia
-    { city: 'Kuala Lumpur', country: 'Malaysia', tzId: 'Asia/Kuala_Lumpur' },
+    { city: 'Kuala Lumpur', country: 'Malaysia', tzId: 'Asia/Kuala_Lumpur', isMain: true },
     { city: 'Penang', country: 'Malaysia', tzId: 'Asia/Kuala_Lumpur' },
     // Argentina
-    { city: 'Buenos Aires', country: 'Argentina', tzId: 'America/Argentina/Buenos_Aires' },
+    { city: 'Buenos Aires', country: 'Argentina', tzId: 'America/Argentina/Buenos_Aires', isMain: true },
     { city: 'Cordoba', country: 'Argentina', tzId: 'America/Argentina/Cordoba' },
     { city: 'Rosario', country: 'Argentina', tzId: 'America/Argentina/Buenos_Aires' },
     // Chile
-    { city: 'Santiago', country: 'Chile', tzId: 'America/Santiago' },
+    { city: 'Santiago', country: 'Chile', tzId: 'America/Santiago', isMain: true },
     { city: 'Valparaiso', country: 'Chile', tzId: 'America/Santiago' },
     // Colombia
-    { city: 'Bogota', country: 'Colombia', tzId: 'America/Bogota' },
+    { city: 'Bogota', country: 'Colombia', tzId: 'America/Bogota', isMain: true },
     { city: 'Medellin', country: 'Colombia', tzId: 'America/Bogota' },
     { city: 'Cali', country: 'Colombia', tzId: 'America/Bogota' },
     // Peru
-    { city: 'Lima', country: 'Peru', tzId: 'America/Lima' },
+    { city: 'Lima', country: 'Peru', tzId: 'America/Lima', isMain: true },
     { city: 'Cusco', country: 'Peru', tzId: 'America/Lima' },
     // New Zealand
-    { city: 'Auckland', country: 'New Zealand', tzId: 'Pacific/Auckland' },
+    { city: 'Auckland', country: 'New Zealand', tzId: 'Pacific/Auckland', isMain: true },
     { city: 'Wellington', country: 'New Zealand', tzId: 'Pacific/Auckland' },
     { city: 'Christchurch', country: 'New Zealand', tzId: 'Pacific/Auckland' },
     // Egypt
-    { city: 'Cairo', country: 'Egypt', tzId: 'Africa/Cairo' },
+    { city: 'Cairo', country: 'Egypt', tzId: 'Africa/Cairo', isMain: true },
     { city: 'Alexandria', country: 'Egypt', tzId: 'Africa/Cairo' },
     { city: 'Giza', country: 'Egypt', tzId: 'Africa/Cairo' },
     // Israel
-    { city: 'Jerusalem', country: 'Israel', tzId: 'Asia/Jerusalem' },
+    { city: 'Jerusalem', country: 'Israel', tzId: 'Asia/Jerusalem', isMain: true },
     { city: 'Tel Aviv', country: 'Israel', tzId: 'Asia/Jerusalem' },
     // Poland
-    { city: 'Warsaw', country: 'Poland', tzId: 'Europe/Warsaw' },
+    { city: 'Warsaw', country: 'Poland', tzId: 'Europe/Warsaw', isMain: true },
     { city: 'Krakow', country: 'Poland', tzId: 'Europe/Warsaw' },
     { city: 'Wroclaw', country: 'Poland', tzId: 'Europe/Warsaw' },
 ];

@@ -17,8 +17,13 @@
 
 .zoneSelection {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: flex-end;
     gap: 0.75rem;
+}
+
+.zoneSelection>.inputGroup {
+    flex: 1;
 }
 
 .label {
@@ -40,8 +45,9 @@
 }
 
 .swapButton {
-    align-self: center;
-    padding: 0.5rem;
+    align-self: flex-end;
+    padding: 0.55rem;
+    margin-bottom: 2px;
     border-radius: 50%;
     border: 1px solid var(--border);
     display: flex;

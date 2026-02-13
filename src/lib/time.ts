@@ -11,6 +11,7 @@ export interface TimeZone {
 export const COMMON_TIMEZONES: TimeZone[] = [
     { id: 'UTC', label: 'UTC', name: 'Universal Coordinated Time' },
     { id: 'Europe/Berlin', label: 'CET', name: 'Central European Time' },
+    { id: 'Europe/Athens', label: 'EET', name: 'Eastern European Time' },
     { id: 'Asia/Kolkata', label: 'IST', name: 'India Standard Time' },
     { id: 'America/New_York', label: 'ET', name: 'Eastern Time' },
     { id: 'America/Los_Angeles', label: 'PT', name: 'Pacific Time' },
@@ -93,13 +94,37 @@ export function getAllTimeZones(): TimeZone[] {
     }).sort((a, b) => a.label.localeCompare(b.label));
 
     // De-duplicate zones that have the same display name/offset
-    // We keep the one with the shortest ID (usually the canonical one)
+    // We keep the one that matches our priority criteria
     const unique = new Map<string, TimeZone>();
     allZonesCache.forEach(tz => {
         // Remove the [id] from the name for de-duplication comparison
         const baseName = tz.name.split(' [')[0];
         const existing = unique.get(baseName);
-        if (!existing || tz.id.length < existing.id.length) {
+
+        if (!existing) {
+            unique.set(baseName, tz);
+            return;
+        }
+
+        // Priority evaluation for de-duplication:
+        const getPriority = (id: string) => {
+            // 1. Is it a primary country timezone?
+            if (Object.values(COUNTRY_PRIMARY_TZ).includes(id)) return 100;
+
+            // 2. Is it marked as a main city in EXTRA_CITIES?
+            if (EXTRA_CITIES.some(c => c.tzId === id && c.isMain)) return 90;
+
+            // 3. Is it a common timezone?
+            if (COMMON_TIMEZONES.some(c => c.id === id)) return 80;
+
+            // 4. Default: lower priority based on ID length (shorter is usually better)
+            return 10 - (id.length / 100);
+        };
+
+        const currentPriority = getPriority(tz.id);
+        const existingPriority = getPriority(existing.id);
+
+        if (currentPriority > existingPriority) {
             unique.set(baseName, tz);
         }
     });
