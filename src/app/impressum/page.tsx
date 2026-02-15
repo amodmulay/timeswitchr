@@ -36,12 +36,12 @@ export default function ImpressumPage() {
                     <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer" className="text-muted" style={{ textDecoration: 'underline', marginLeft: '0.5rem' }}>
                         https://ec.europa.eu/consumers/odr/
                     </a>.
-                    Unsere E-Mail-Adresse finden Sie oben im Impressum.
+                    Meine E-Mail-Adresse finden Sie oben im Impressum.
                 </p>
 
                 <h2 className="mt-8">Verbraucherstreitbeilegung/Universalschlichtungsstelle</h2>
                 <p>
-                    Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+                    Ich bin nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
                 </p>
             </section>
         </main>

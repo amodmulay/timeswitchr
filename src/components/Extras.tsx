@@ -131,3 +131,44 @@ export function WorldClock() {
         </div>
     );
 }
+
+export function ConversionTable() {
+    const commonOffsets = [
+        { name: 'Hawaii-Aleutian', id: 'HST', offset: 'UTC-10' },
+        { name: 'Alaska', id: 'AKST/AKDT', offset: 'UTC-9/8' },
+        { name: 'Pacific', id: 'PT', offset: 'UTC-8/7' },
+        { name: 'Mountain', id: 'MT', offset: 'UTC-7/6' },
+        { name: 'Central', id: 'CT', offset: 'UTC-6/5' },
+        { name: 'Eastern', id: 'ET', offset: 'UTC-5/4' },
+        { name: 'Greenwich', id: 'GMT', offset: 'UTC+0' },
+        { name: 'Central European', id: 'CET/CEST', offset: 'UTC+1/2' },
+        { name: 'Eastern European', id: 'EET/EEST', offset: 'UTC+2/3' },
+        { name: 'India Standard', id: 'IST', offset: 'UTC+5.5' },
+        { name: 'Japan Standard', id: 'JST', offset: 'UTC+9' },
+        { name: 'Australian Eastern', id: 'AEST/AEDT', offset: 'UTC+10/11' },
+    ];
+
+    return (
+        <div className={styles.tableWrapper}>
+            <h3 className="text-center mb-4">Quick Reference: Common Timezone Offsets</h3>
+            <table className={styles.conversionTable}>
+                <thead>
+                    <tr>
+                        <th>Timezone Name</th>
+                        <th>Abbrev.</th>
+                        <th>Base Offset</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {commonOffsets.map(tz => (
+                        <tr key={tz.id}>
+                            <td>{tz.name}</td>
+                            <td>{tz.id}</td>
+                            <td><code>{tz.offset}</code></td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+}

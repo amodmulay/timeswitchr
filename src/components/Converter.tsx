@@ -17,6 +17,7 @@ interface ConverterProps {
     onToggle24h: (val: boolean) => void;
     onAddPreset?: (z: string) => void;
     isPreset?: boolean;
+    isInitialized?: boolean;
 }
 
 export default function Converter({
@@ -30,6 +31,7 @@ export default function Converter({
     onToggle24h,
     onAddPreset,
     isPreset,
+    isInitialized = true,
 }: ConverterProps) {
     const result = convertTime(time, fromZone, toZone);
 
@@ -121,25 +123,27 @@ export default function Converter({
                 </div>
             </div>
 
-            <div className={styles.resultSection}>
-                <span className={styles.resultTime}>{result.convertedTime}</span>
-                <span className={styles.resultDay}>{result.dayLabel}</span>
+            {isInitialized && (
+                <div className={styles.resultSection}>
+                    <span className={styles.resultTime}>{result.convertedTime}</span>
+                    <span className={styles.resultDay}>{result.dayLabel}</span>
 
-                {onAddPreset && (
-                    <div style={{ marginTop: '0.5rem' }}>
-                        {isPreset ? (
-                            <span className={styles.addedBadge}>Saved to Presets</span>
-                        ) : (
-                            <button
-                                className={styles.addPresetButton}
-                                onClick={() => onAddPreset(toZone)}
-                            >
-                                + Add to Presets
-                            </button>
-                        )}
-                    </div>
-                )}
-            </div>
+                    {onAddPreset && (
+                        <div style={{ marginTop: '0.5rem' }}>
+                            {isPreset ? (
+                                <span className={styles.addedBadge}>Saved to Presets</span>
+                            ) : (
+                                <button
+                                    className={styles.addPresetButton}
+                                    onClick={() => onAddPreset(toZone)}
+                                >
+                                    + Add to Presets
+                                </button>
+                            )}
+                        </div>
+                    )}
+                </div>
+            )}
         </div>
     );
 }

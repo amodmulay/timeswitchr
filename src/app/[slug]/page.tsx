@@ -41,13 +41,13 @@ export default async function PresetPage({ params }: PageProps) {
 
   ### Why use TimeSwitchr for ${from.label} to ${to.label}?
   Converting time zones can be confusing, especially with Daylight Saving Time changes and varying offsets. 
-  Our tool is designed to be the fastest way to see the time difference. 
+  My tool is designed to be the fastest way to see the time difference. 
   - **Zero Click Conversion**: Just type the time or use the rolling wheels.
   - **Always Accurate**: Powered by the latest IANA timezone data.
   - **Perfect for Meetings**: Quickly find the best time for your global team members in ${from.label} and ${to.label}.
 
   ### How it works
-  1. **Select the Time**: Use our premium rolling wheels or switch to keyboard mode to enter the time in ${from.label}.
+  1. **Select the Time**: Use the premium rolling wheels or switch to keyboard mode to enter the time in ${from.label}.
   2. **Instant Result**: The converted time for ${to.label} appears immediately below.
   3. **Day Shift Alerts**: If the conversion crosses into the next or previous day, you'll see a clear label (e.g., "+1 Day").
   4. **Swap Zones**: Click the swap button to instantly see the conversion from ${to.label} to ${from.label}.

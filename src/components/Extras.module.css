@@ -87,3 +87,44 @@
         grid-template-columns: 1fr;
     }
 }
+
+.tableWrapper {
+    margin: 3rem auto;
+    max-width: 600px;
+    padding: 0 1rem;
+}
+
+.conversionTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    background: var(--muted-background);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.conversionTable th,
+.conversionTable td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.conversionTable th {
+    background: rgba(0, 0, 0, 0.05);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+
+.conversionTable tr:last-child td {
+    border-bottom: none;
+}
+
+.conversionTable code {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 0.1rem 0.3rem;
+    border-radius: 4px;
+    font-family: monospace;
+}
