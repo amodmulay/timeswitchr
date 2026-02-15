@@ -120,9 +120,9 @@ export default function HomeContainer({
                     <div className={styles.sectionHeader}>
                         <h2 className="text-center">Popular Conversions</h2>
                         <div className={styles.quickLinks}>
-                            <a href="#why" className={styles.quickLink}>Why?</a>
-                            <a href="#faq" className={styles.quickLink}>FAQ</a>
-                            <a href="#tips" className={styles.quickLink}>Tips</a>
+                            <a href="/info#why" className={styles.quickLink}>Why?</a>
+                            <a href="/info#faq" className={styles.quickLink}>FAQ</a>
+                            <a href="/info#tips" className={styles.quickLink}>Tips</a>
                             <a href="mailto:themvpletter@gmail.com" className={styles.quickLink}>Contact</a>
                         </div>
                     </div>

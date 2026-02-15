@@ -51,8 +51,10 @@ export default function RootLayout({
             <nav style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', marginBottom: '1rem' }}>
               <a href="/" style={{ color: 'var(--foreground)', fontWeight: 500 }}>Home</a>
               <a href="/about">About</a>
+              <a href="/info">Guide</a>
               <a href="/impressum">Impressum</a>
               <a href="/privacy">Privacy</a>
+              <a href="/stack">Stack</a>
               <a href="mailto:themvpletter@gmail.com">Contact</a>
             </nav>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '1.25rem', fontSize: '0.75rem', opacity: 0.8 }}>
