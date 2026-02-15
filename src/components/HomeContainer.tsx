@@ -21,7 +21,7 @@ function AdPlaceholder({ id, type }: { id: string; type: 'native' | 'sticky' }) 
             id={id}
             className={type === 'sticky' ? styles.adSticky : styles.adNative}
         >
-            Ad Slot: {id} ({type})
+            Would you like to place your ad here?
         </div>
     );
 }
@@ -117,10 +117,15 @@ export default function HomeContainer({
                 </>
             ) : (
                 <>
-                    <h2 className="mt-8 text-center">Popular Conversions</h2>
-                    <p style={{ textAlign: 'center', fontSize: '0.875rem', color: 'var(--muted)', marginTop: '0.5rem' }}>
-                        Try these common timezone pairs
-                    </p>
+                    <div className={styles.sectionHeader}>
+                        <h2 className="text-center">Popular Conversions</h2>
+                        <div className={styles.quickLinks}>
+                            <a href="#why" className={styles.quickLink}>Why?</a>
+                            <a href="#faq" className={styles.quickLink}>FAQ</a>
+                            <a href="#tips" className={styles.quickLink}>Tips</a>
+                            <a href="mailto:themvpletter@gmail.com" className={styles.quickLink}>Contact</a>
+                        </div>
+                    </div>
                     <Presets
                         userPresets={[]}
                         onSelect={handlePresetSelect}

@@ -6,7 +6,7 @@ export default function InfoSection() {
     return (
         <section className={styles.infoSection}>
             <div className={styles.contentBlock}>
-                <h2>Why Use TimeSwitchr?</h2>
+                <h2 id="why">Why Use TimeSwitchr?</h2>
                 <p>
                     In today's global economy, working across time zones is a daily reality.
                     TimeSwitchr was built to solve the frustration of complex, cluttered timezone converters.
@@ -35,7 +35,7 @@ export default function InfoSection() {
             </div>
 
             <div className={styles.faq}>
-                <h2>Frequently Asked Questions</h2>
+                <h2 id="faq">Frequently Asked Questions</h2>
                 <div className={styles.faqItem}>
                     <h4>What is UTC and why is it important?</h4>
                     <p>
@@ -60,7 +60,7 @@ export default function InfoSection() {
             </div>
 
             <div className={styles.tips}>
-                <h2>Tips for Global Collaboration</h2>
+                <h2 id="tips">Tips for Global Collaboration</h2>
                 <ul>
                     <li><strong>Set a "Golden Hour":</strong> Find the overlap between your team's working hours. A 9 AM start in New York is 2 PM in London and 7:30 PM in Mumbai.</li>
                     <li><strong>Use UTC for Invites:</strong> When scheduling very large cross-continental meetings, including the UTC time can help avoid confusion.</li>

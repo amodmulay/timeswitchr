@@ -62,3 +62,22 @@
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
 }
+
+.quickLinks {
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+
+.quickLink {
+    color: var(--muted);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.quickLink:hover {
+    opacity: 1;
+    text-decoration: underline;
+}

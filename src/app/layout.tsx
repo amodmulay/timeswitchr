@@ -53,6 +53,7 @@ export default function RootLayout({
               <a href="/about">About</a>
               <a href="/impressum">Impressum</a>
               <a href="/privacy">Privacy</a>
+              <a href="mailto:themvpletter@gmail.com">Contact</a>
             </nav>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '1.25rem', fontSize: '0.75rem', opacity: 0.8 }}>
               <span>Partners:</span>
