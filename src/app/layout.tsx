@@ -33,6 +33,7 @@ export const viewport = {
 };
 
 import Footer from "@/components/Footer";
+import PwaUpdater from "@/components/PwaUpdater";
 
 export default function RootLayout({
   children,
@@ -50,6 +51,7 @@ export default function RootLayout({
 
         <Footer />
 
+        <PwaUpdater />
         <ConsentBanner />
 
         {/* Google Tag Manager / Analytics */}
@@ -98,7 +100,13 @@ export default function RootLayout({
 
             if ('serviceWorker' in navigator) {
               window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/sw.js');
+                navigator.serviceWorker.register('/sw.js').then(function(reg) {
+                  // Registration was successful
+                  console.log('ServiceWorker registration successful');
+                }).catch(function(err) {
+                  // registration failed :(
+                  console.log('ServiceWorker registration failed: ', err);
+                });
               });
             }
           `}
