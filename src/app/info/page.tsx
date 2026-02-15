@@ -17,9 +17,6 @@ export default function InfoPage() {
 
             <InfoSection />
 
-            <footer style={{ marginTop: '4rem', textAlign: 'center', borderTop: '1px solid var(--border)', paddingTop: '2rem' }}>
-                <a href="/" style={{ color: 'var(--foreground)', fontWeight: 500 }}>← Back to Time Converter</a>
-            </footer>
         </main>
     );
 }

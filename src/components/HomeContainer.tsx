@@ -170,10 +170,6 @@ export default function HomeContainer({
                     </p>
                 ))}
             </section>
-
-            <InfoSection />
-
-            <AdPlaceholder id="footer-ad" type="sticky" />
         </main>
     );
 }

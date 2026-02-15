@@ -84,9 +84,6 @@ export default function AboutPage() {
                 </a>
             </section>
 
-            <footer style={{ marginTop: '4rem', textAlign: 'center' }}>
-                <a href="/" style={{ color: 'var(--foreground)', fontWeight: 500 }}>Back to Converter</a>
-            </footer>
         </main >
     );
 }
