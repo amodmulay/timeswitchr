@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import { DateTime } from 'luxon';
 import styles from './HomeContainer.module.css';
 import Converter from '@/components/Converter';
-import { Presets, WorldClock } from '@/components/Extras';
+import { Presets, WorldClock, ConversionTable } from '@/components/Extras';
+import InfoSection from '@/components/InfoSection';
 import { getLocalTimeZone } from '@/lib/time';
 
 interface HomeContainerProps {
@@ -141,6 +142,7 @@ export default function HomeContainer({
                     onToggle24h={setIs24h}
                     onAddPreset={handleAddPreset}
                     isPreset={userPresets.includes(toZone)}
+                    isInitialized={isInitialized}
                 />
             </div>
 
@@ -149,15 +151,22 @@ export default function HomeContainer({
             <h2 className="mt-8 text-center">World Clock</h2>
             <WorldClock />
 
+            <ConversionTable />
+
             <section className="mt-8 text-sm text-muted" style={{ maxWidth: '600px', margin: '1.25rem auto 0' }}>
-                {(description || `TimeSwitchr is a minimalist time zone converter designed for speed. 
-          Instantly convert between CET, IST, ET, PT, and more with zero clicks.
-          Perfect for scheduled meetings and international calls.`).split('\n\n').map((para, i) => (
-                    <p key={i} className={i > 0 ? 'mt-4' : ''}>
+                {(description ? description.split(/\n\s*\n/) : [
+                    "TimeSwitchr is a professional-grade time zone converter built for global teams and remote work coordination.",
+                    "The tool provides instant, zero-click conversions between timezones like CET, IST, ET, PT, and hundreds of other world regions.",
+                    "Whether you are scheduling cross-continental meetings or tracking global market hours, TimeSwitchr offers a minimalist and high-performance experience.",
+                    "Optimized for both desktop and mobile use, helping you manage international schedules with precision and speed."
+                ]).map((para, i) => (
+                    <p key={`para-${i}`} className={i > 0 ? 'mt-4' : ''}>
                         {para.trim()}
                     </p>
                 ))}
             </section>
+
+            <InfoSection />
 
             <AdPlaceholder id="footer-ad" type="sticky" />
         </main>

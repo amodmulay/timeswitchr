@@ -31,14 +31,16 @@ export const WORLD_CLOCK_ZONES = [
     'America/Los_Angeles'
 ];
 
+// Deterministic reference point for comparisons/metadata to avoid hydration mismatch
+const DETERMINISTIC_REF = DateTime.fromISO('2024-01-01T12:00:00Z');
+
 // Heuristic to check if two zone IDs represent the same time rules
 export const isSameZone = (id1: string, id2: string) => {
     if (!id1 || !id2) return false;
     if (id1 === id2) return true;
     try {
-        const now = DateTime.now();
-        const d1 = now.setZone(id1);
-        const d2 = now.setZone(id2);
+        const d1 = DETERMINISTIC_REF.setZone(id1);
+        const d2 = DETERMINISTIC_REF.setZone(id2);
         // Must have same offset and same abbreviation to be considered "the same" for search
         return d1.offset === d2.offset && d1.toFormat('ZZZZ') === d2.toFormat('ZZZZ');
     } catch {
@@ -54,7 +56,7 @@ export function getAllTimeZones(): TimeZone[] {
     const zones = Intl.supportedValuesOf('timeZone');
 
     allZonesCache = zones.map(id => {
-        const dt = DateTime.now().setZone(id);
+        const dt = DETERMINISTIC_REF.setZone(id);
         const offset = dt.toFormat('ZZ');
         const cityLabel = id.split('/').pop()?.replace(/_/g, ' ') || id;
         const abbrev = dt.toFormat('ZZZZ');

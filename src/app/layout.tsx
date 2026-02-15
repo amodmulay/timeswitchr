@@ -50,6 +50,7 @@ export default function RootLayout({
           <div className="container">
             <nav style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', marginBottom: '1rem' }}>
               <a href="/" style={{ color: 'var(--foreground)', fontWeight: 500 }}>Home</a>
+              <a href="/about">About</a>
               <a href="/impressum">Impressum</a>
               <a href="/privacy">Privacy</a>
             </nav>
@@ -59,7 +60,7 @@ export default function RootLayout({
               <a href="https://themvpletter.com/" target="_blank" rel="noopener">The MVP Letter</a>
             </div>
             <p style={{ marginTop: '1rem' }}>
-              © {new Date().getFullYear()} TimeSwitchr
+              © 2026 TimeSwitchr
               <span style={{ opacity: 0.5, marginLeft: '0.5rem', fontSize: '0.7rem' }}>
                 v{process.env.NEXT_PUBLIC_APP_VERSION}
               </span>
