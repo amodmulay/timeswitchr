@@ -6,9 +6,12 @@ export const metadata = constructMetadata({
     description: 'A deep dive into how time zones work, the mechanics of conversion, and why precise time management is critical for global remote teams.',
 });
 
+import BackButton from '@/components/BackButton';
+
 export default function KnowledgePage() {
     return (
         <main className="container" style={{ maxWidth: '800px', margin: '4rem auto', padding: '0 1rem' }}>
+            <BackButton />
             <h1 style={{ textAlign: 'center', marginBottom: '1rem' }}>Time Zone Knowledge Base</h1>
             <p style={{ textAlign: 'center', color: 'var(--muted)', marginBottom: '3rem' }}>
                 Understanding the technical and human aspects of global time coordination.
@@ -62,9 +65,6 @@ export default function KnowledgePage() {
                 </div>
             </details>
 
-            <footer style={{ marginTop: '4rem', textAlign: 'center', borderTop: '1px solid var(--border)', paddingTop: '2rem' }}>
-                <a href="/" style={{ color: 'var(--foreground)', fontWeight: 500 }}>← Back to Time Converter</a>
-            </footer>
         </main>
     );
 }

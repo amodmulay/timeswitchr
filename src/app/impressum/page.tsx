@@ -5,9 +5,12 @@ export const metadata = constructMetadata({
     description: 'Legal information about the website owner of TimeSwitchr.',
 });
 
+import BackButton from "@/components/BackButton";
+
 export default function ImpressumPage() {
     return (
-        <main className="container">
+        <main className="container" style={{ maxWidth: '800px', margin: '4rem auto', padding: '0 1rem' }}>
+            <BackButton />
             <h1 className="text-center">Impressum</h1>
 
             <section className="mt-8">

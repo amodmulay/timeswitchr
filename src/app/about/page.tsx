@@ -1,8 +1,11 @@
 'use client';
 
+import BackButton from "@/components/BackButton";
+
 export default function AboutPage() {
     return (
         <main className="container" style={{ maxWidth: '800px', margin: '4rem auto', padding: '0 1rem' }}>
+            <BackButton />
             <h1 style={{ textAlign: 'center', marginBottom: '2rem' }}>About TimeSwitchr</h1>
 
             <section style={{ marginBottom: '3rem' }}>

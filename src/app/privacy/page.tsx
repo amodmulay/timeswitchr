@@ -5,9 +5,12 @@ export const metadata = constructMetadata({
     description: 'Information about how TimeSwitchr handles your data.',
 });
 
+import BackButton from "@/components/BackButton";
+
 export default function PrivacyPage() {
     return (
-        <main className="container">
+        <main className="container" style={{ maxWidth: '800px', margin: '4rem auto', padding: '0 1rem' }}>
+            <BackButton />
             <h1 className="text-center">Privacy Policy</h1>
 
             <section className="mt-8">

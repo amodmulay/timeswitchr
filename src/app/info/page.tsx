@@ -6,9 +6,12 @@ export const metadata = constructMetadata({
     description: 'Learn why TimeSwitchr is the best choice for global teams. Frequently asked questions about UTC, DST, and tips for cross-continental scheduling.',
 });
 
+import BackButton from '@/components/BackButton';
+
 export default function InfoPage() {
     return (
         <main className="container" style={{ maxWidth: '800px', margin: '4rem auto', padding: '0 1rem' }}>
+            <BackButton />
             <h1 style={{ textAlign: 'center', marginBottom: '2rem' }}>Information & Guide</h1>
 
             <p style={{ textAlign: 'center', color: 'var(--muted)', marginBottom: '3rem' }}>

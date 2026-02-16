@@ -5,10 +5,13 @@ export const metadata = constructMetadata({
     description: 'Explore the modern technology stack behind TimeSwitchr: Next.js, TypeScript, Luxon, and more. Open source timezone conversion architecture.',
 });
 
-export default function TechStackPage() {
+import BackButton from "@/components/BackButton";
+
+export default function StackPage() {
     return (
         <main className="container" style={{ maxWidth: '800px', margin: '4rem auto', padding: '0 1rem' }}>
-            <h1 style={{ textAlign: 'center', marginBottom: '2rem' }}>Technologies & Architecture</h1>
+            <BackButton />
+            <h1 style={{ textAlign: 'center', marginBottom: '1rem' }}>Technology Stack & Architecture</h1>
 
             <p style={{ textAlign: 'center', color: 'var(--muted)', marginBottom: '3rem' }}>
                 TimeSwitchr is built using a modern, high-performance web stack designed for precision and speed.

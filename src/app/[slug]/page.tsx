@@ -26,6 +26,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     });
 }
 
+import BackButton from '@/components/BackButton';
+
 export default async function PresetPage({ params }: PageProps) {
     const { slug } = await params;
     const { from, to } = parseSlug(slug);
@@ -62,6 +64,7 @@ export default async function PresetPage({ params }: PageProps) {
                 initialTo={to.id}
                 title={title}
                 description={description}
+                showBackButton={true}
             />
             <script
                 type="application/ld+json"

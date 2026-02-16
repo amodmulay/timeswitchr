@@ -7,12 +7,14 @@ import Converter from '@/components/Converter';
 import { Presets, WorldClock, ConversionTable } from '@/components/Extras';
 import InfoSection from '@/components/InfoSection';
 import { getLocalTimeZone } from '@/lib/time';
+import BackButton from './BackButton';
 
 interface HomeContainerProps {
     initialFrom?: string;
     initialTo?: string;
     title?: string;
     description?: string;
+    showBackButton?: boolean;
 }
 
 function AdPlaceholder({ id, type }: { id: string; type: 'native' | 'sticky' }) {
@@ -29,8 +31,9 @@ function AdPlaceholder({ id, type }: { id: string; type: 'native' | 'sticky' }) 
 export default function HomeContainer({
     initialFrom,
     initialTo,
-    title = "Fast, Professional Time Zone Converter",
-    description
+    title = "TimeSwitchr",
+    description,
+    showBackButton = false
 }: HomeContainerProps) {
     const [time, setTime] = useState('12:00');
     const [fromZone, setFromZone] = useState(initialFrom || 'UTC');
@@ -91,6 +94,7 @@ export default function HomeContainer({
 
     return (
         <main className="container">
+            {showBackButton && <BackButton />}
             <h1>{title}</h1>
 
             {userPresets.length > 0 ? (
