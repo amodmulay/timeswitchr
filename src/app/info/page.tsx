@@ -17,6 +17,57 @@ export default function InfoPage() {
 
             <InfoSection />
 
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        '@context': 'https://schema.org',
+                        '@type': 'FAQPage',
+                        'mainEntity': [
+                            {
+                                '@type': 'Question',
+                                'name': 'How do I convert time between two specific cities?',
+                                'acceptedAnswer': {
+                                    '@type': 'Answer',
+                                    'text': 'TimeSwitchr uses the IANA database to link major cities to their respective time zones. Type the city name in the input box to instantly resolve and convert the time.'
+                                }
+                            },
+                            {
+                                '@type': 'Question',
+                                'name': 'Does this tool account for Daylight Saving Time (DST) automatically?',
+                                'acceptedAnswer': {
+                                    '@type': 'Answer',
+                                    'text': 'Yes, the conversion engine calculates the exact offset for the specific date and time entered, accounting for regional DST transitions for both the origin and destination zones.'
+                                }
+                            },
+                            {
+                                '@type': 'Question',
+                                'name': 'What is the difference between UTC and GMT?',
+                                'acceptedAnswer': {
+                                    '@type': 'Answer',
+                                    'text': 'UTC is a high-precision atomic time standard and the primary reference for civil time, while GMT is a specific time zone. UTC serves as the stable anchor as it does not observe DST.'
+                                }
+                            },
+                            {
+                                '@type': 'Question',
+                                'name': 'How can I schedule a meeting across three or more time zones?',
+                                'acceptedAnswer': {
+                                    '@type': 'Answer',
+                                    'text': 'The World Clock feature on the homepage allows you to see how your primary time translates across multiple zones simultaneously, helping you find the best overlap for global meetings.'
+                                }
+                            },
+                            {
+                                '@type': 'Question',
+                                'name': 'Is the converted time always accurate for future dates?',
+                                'acceptedAnswer': {
+                                    '@type': 'Answer',
+                                    'text': 'The tool relies on the latest IANA Time Zone Database (Zoneinfo). It remains accurate as long as government changes to time laws are reported and updated in the database.'
+                                }
+                            }
+                        ]
+                    })
+                }}
+            />
         </main>
     );
 }

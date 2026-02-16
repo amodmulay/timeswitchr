@@ -37,24 +37,33 @@ export default function InfoSection() {
             <div className={styles.faq}>
                 <h2 id="faq">Frequently Asked Questions</h2>
                 <div className={styles.faqItem}>
-                    <h4>What is UTC and why is it important?</h4>
+                    <h4>How do I convert time between two specific cities?</h4>
                     <p>
-                        Coordinated Universal Time (UTC) is the primary time standard by which the world regulates clocks and time.
-                        It does not change for Daylight Saving Time, making it the perfect 'reference point' for global coordination.
+                        TimeSwitchr uses the IANA database, which links major cities to their respective time zones. Simply start typing the city name in the "From" or "To" search box. The tool will instantly resolve the city to its correct time zone (e.g., "Paris" to "Central European Time"). Once selected, use the rolling wheels or keyboard input to see the live conversion.
                     </p>
                 </div>
                 <div className={styles.faqItem}>
-                    <h4>How does TimeSwitchr handle Daylight Saving Time (DST)?</h4>
+                    <h4>Does this tool account for Daylight Saving Time (DST) automatically?</h4>
                     <p>
-                        My system automatically accounts for DST changes based on the city and date selected.
-                        I use real-time IANA data to ensure your conversions are always accurate, regardless of seasonal shifts.
+                        Yes. Precision is a core principle of TimeSwitchr. The conversion engine calculates the exact offset for the specific date and time you enter. Because different regions shift clocks on different weeks, the tool verifies the historical and planned DST transitions for both the origin and destination zones. This ensures that your meeting times remain accurate during the chaotic transition weeks in March and October.
                     </p>
                 </div>
                 <div className={styles.faqItem}>
-                    <h4>Is my data private?</h4>
+                    <h4>What is the difference between UTC and GMT?</h4>
                     <p>
-                        Yes. Unlike many other tools, TimeSwitchr stores your presets locally in your browser.
-                        I do not track your specific conversions or store your preferences on my servers.
+                        While often used interchangeably, there is a technical distinction. Coordinated Universal Time (UTC) is a high-precision atomic time standard and is the primary reference for all civil time. Greenwich Mean Time (GMT) is a time zone used in parts of Europe and Africa. Since UTC does not observe Daylight Saving Time, it serves as the stable anchor that all other global zones are measured against.
+                    </p>
+                </div>
+                <div className={styles.faqItem}>
+                    <h4>How can I schedule a meeting across three or more time zones?</h4>
+                    <p>
+                        Managing "three-way" conversions is best handled by using the World Clock feature on the homepage. By selecting your primary "From" zone, you can see how that time translates across multiple "To" zones simultaneously. This allows you to find the "Golden Hour"—the narrow window where participants in New York, London, and Tokyo might all be awake and available for a synchronous call.
+                    </p>
+                </div>
+                <div className={styles.faqItem}>
+                    <h4>Is the converted time always accurate for future dates?</h4>
+                    <p>
+                        The tool is as accurate as the current IANA Time Zone Database rules. For the vast majority of dates, the conversion is perfectly reliable. However, governments occasionally change their time zone laws (like shifting DST start dates) with very short notice. TimeSwitchr stays updated with the latest database releases (Zoneinfo) to reflect these legislative changes as soon as they are technically available and standardized.
                     </p>
                 </div>
             </div>
