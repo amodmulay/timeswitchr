@@ -7,8 +7,8 @@ interface MetadataProps {
     ogImage?: string;
 }
 
-const DEFAULT_TITLE = 'TimeSwitchr | Minimalist Time Zone Converter';
-const DEFAULT_DESC = 'Fast, minimalist time zone converter. Convert between CET, IST, ET, PT, and UTC with zero clicks. Modern UI, mobile-first, and SEO-friendly.';
+const DEFAULT_TITLE = 'Time Zone Converter | Fast, Minimalist & Professional';
+const DEFAULT_DESC = 'TimeSwitchr is a professional time zone converter for global teams. Effortlessly convert between CET, ET, PT, and UTC with zero clicks and absolute precision.';
 const BASE_URL = 'https://timeswitchr.com';
 
 export function constructMetadata({

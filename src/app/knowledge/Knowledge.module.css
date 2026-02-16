@@ -1,0 +1,54 @@
+.knowledgeContainer {
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.knowledgeSummary {
+    padding: 1.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: var(--background);
+    color: var(--foreground);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    outline: none;
+}
+
+.knowledgeSummary::-webkit-details-marker {
+    display: none;
+}
+
+.knowledgeSummary:after {
+    content: '+';
+    font-size: 1.25rem;
+    color: var(--muted);
+}
+
+.knowledgeContainer[open] .knowledgeSummary:after {
+    content: '−';
+}
+
+.knowledgeContainer[open] .knowledgeSummary {
+    border-bottom: 1px solid var(--border);
+    background: var(--muted-background);
+}
+
+.content {
+    padding: 1.5rem;
+    line-height: 1.7;
+    color: var(--foreground);
+    font-size: 0.95rem;
+}
+
+.content p {
+    margin-bottom: 1rem;
+}
+
+.content p:last-child {
+    margin-bottom: 0;
+}

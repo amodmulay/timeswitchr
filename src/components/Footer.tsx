@@ -10,6 +10,7 @@ export default function Footer() {
                     <a href="/" style={{ color: 'var(--foreground)', fontWeight: 500 }}>Home</a>
                     <a href="/about">About</a>
                     <a href="/info">Guide</a>
+                    <a href="/knowledge">Knowledge</a>
                     <a href="/impressum">Impressum</a>
                     <a href="/privacy">Privacy</a>
                     <a href="/stack">Stack</a>

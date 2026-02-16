@@ -29,7 +29,7 @@ function AdPlaceholder({ id, type }: { id: string; type: 'native' | 'sticky' }) 
 export default function HomeContainer({
     initialFrom,
     initialTo,
-    title = "TimeSwitchr",
+    title = "Fast, Professional Time Zone Converter",
     description
 }: HomeContainerProps) {
     const [time, setTime] = useState('12:00');
